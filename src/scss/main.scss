@@ -3,19 +3,29 @@
 
 @import "modules/menu";
 @import "modules/map";
-
+@import "modules/about";
 
 * {
 	margin: 0;
 	padding: 0;
 	box-sizing: border-box;
+	body {
+		background-color: $backgroundColor;
+		font-family: $mainFont;
+		.container {
+			max-width: 1280px;
+			margin: auto;
+			& > * {
+				padding-left: 10px;
+				padding-right: 10px;
+			}
+			h1 {
+				margin-bottom: 20px;
+				font-family: "Indie Flower", cursive;
+			}
+		}
+	}
 }
 
-body {
-	background-color: $backgroundColor;
-	font-family: $mainFont;
-}
-.container {
-	max-width: 1280px;
-	margin: auto;
-}
+
+

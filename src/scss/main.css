@@ -27,27 +27,30 @@ header {
   background-position: center left;
   background-size: cover;
   width: 100vw;
-  height: 45vh; }
+  height: 45vh;
+  margin-bottom: 20px; }
   header li {
     display: inline-block;
     width: 12rem;
     height: 20%;
     position: relative;
     top: 15px; }
+    header li .link {
+      font-size: 1.4rem;
+      text-decoration: none;
+      font-family: "Indie Flower", cursive;
+      font-weight: bolder;
+      color: black;
+      padding-left: 3px; }
+      header li .link:hover {
+        color: #a8bf23; }
+    header li .active_link {
+      color: #a8bf23; }
     header li .sign__link--rectangle {
       width: 7rem;
       height: 4rem;
       background-color: #e3e6ec;
       position: absolute; }
-      header li .sign__link--rectangle .link {
-        font-size: 1.4rem;
-        text-decoration: none;
-        font-family: "Indie Flower", cursive;
-        font-weight: bolder;
-        color: black;
-        padding-left: 3px; }
-      header li .sign__link--rectangle .active_link {
-        color: #a8bf23; }
     header li .sign__link--triangle {
       width: 0;
       height: 0;
@@ -67,15 +70,23 @@ header {
   top: -12px;
   cursor: pointer; }
 
+p {
+  text-indent: 30px;
+  text-align: justify; }
+
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box; }
-
-body {
-  background-color: #4994eb;
-  font-family: "Lato", sans-serif; }
-
-.container {
-  max-width: 1280px;
-  margin: auto; }
+  * body {
+    background-color: #4994eb;
+    font-family: "Lato", sans-serif; }
+    * body .container {
+      max-width: 1280px;
+      margin: auto; }
+      * body .container > * {
+        padding-left: 10px;
+        padding-right: 10px; }
+      * body .container h1 {
+        margin-bottom: 20px;
+        font-family: "Indie Flower", cursive; }

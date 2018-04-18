@@ -4,6 +4,7 @@ header {
 	background-size: cover;
 	width: 100vw;
 	height: 45vh;
+	margin-bottom: 20px;
 	li {
 		display: inline-block;
 		width: 12rem;
@@ -11,23 +12,26 @@ header {
 		position: relative;
 		top: 15px;
 
+		.link {
+			font-size: 1.4rem;
+			text-decoration: none;
+			font-family: $menuFont;
+			font-weight: bolder;
+			color: black;
+			padding-left: 3px;
+			&:hover {
+				color: $activeColor;
+			}
+		}
+		.active_link {
+			color: $activeColor;
+		}
+
 		.sign__link--rectangle{
 			width: 7rem;
 			height: 4rem;
 			background-color: $menuColor;
 			position: absolute;
-
-			.link {
-				font-size: 1.4rem;
-				text-decoration: none;
-				font-family: $menuFont;
-				font-weight: bolder;
-				color: black;
-				padding-left: 3px;
-			}
-			.active_link {
-				color: $activeColor;
-			}
 		}
 		.sign__link--triangle{
 			width: 0;

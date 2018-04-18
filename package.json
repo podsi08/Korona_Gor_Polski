@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "animate.css": "^3.6.1",
     "google-map-react": "^0.34.0",
     "google-maps-react": "^2.0.0",
     "node-sass-chokidar": "^1.2.2",

@@ -1,4 +1,5 @@
 import React from 'react';
+import 'animate.css';
 import '../scss/main.css';
 import {
     HashRouter,
@@ -9,7 +10,7 @@ import {
 } from 'react-router-dom';
 
 
-import Map from "./MapContainer";
+import Map from "./Map";
 import Log from "./Log";
 import Home from "./Home";
 import Menu from "./Menu";
