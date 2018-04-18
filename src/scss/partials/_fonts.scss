@@ -1,0 +1,38 @@
+$mainFont: 'Lato', sans-serif;
+$menuFont: 'Indie Flower', cursive;
+
+@font-face {
+	font-family: 'Lato';
+	src: local('Lato Bold'), local('Lato-Bold'),
+url('../fonts/Lato-Bold.woff2') format('woff2'),
+url('../fonts/Lato-Bold.woff') format('woff');
+	font-weight: bold;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'Lato';
+	src: local('Lato Regular'), local('Lato-Regular'),
+url('../fonts/Lato-Regular.woff2') format('woff2'),
+url('../fonts/Lato-Regular.woff') format('woff');
+	font-weight: normal;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'Lato';
+	src: local('Lato Italic'), local('Lato-Italic'),
+url('../fonts/Lato-Italic.woff2') format('woff2'),
+url('../fonts/Lato-Italic.woff') format('woff');
+	font-weight: normal;
+	font-style: italic;
+}
+
+@font-face {
+	font-family: 'Indie Flower';
+	src: local('Indie Flower'), local('IndieFlower'),
+	url('../fonts/IndieFlower.woff2') format('woff2'),
+	url('../fonts/IndieFlower.woff') format('woff');
+	font-weight: normal;
+	font-style: normal;
+}

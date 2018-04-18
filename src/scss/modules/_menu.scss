@@ -1,0 +1,43 @@
+header {
+	background: url("../images/background-menu.jpg") no-repeat;
+	background-position: center left;
+	background-size: cover;
+	width: 100vw;
+	height: 45vh;
+	li {
+		display: inline-block;
+		width: 12rem;
+		height: 20%;
+		position: relative;
+		top: 15px;
+
+		.sign__link--rectangle{
+			width: 7rem;
+			height: 4rem;
+			background-color: $menuColor;
+			position: absolute;
+
+			.link {
+				font-size: 1.4rem;
+				text-decoration: none;
+				font-family: $menuFont;
+				font-weight: bolder;
+				color: black;
+				padding-left: 3px;
+			}
+			.active_link {
+				color: $activeColor;
+			}
+		}
+		.sign__link--triangle{
+			width: 0;
+			height: 0;
+			border-top: 2rem solid transparent;
+			border-bottom: 2rem solid transparent;
+			position: absolute;
+			border-left: 3rem solid $menuColor;
+			left: 7rem;
+		}
+
+	}
+}

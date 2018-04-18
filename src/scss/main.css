@@ -1,0 +1,81 @@
+@font-face {
+  font-family: 'Lato';
+  src: local("Lato Bold"), local("Lato-Bold"), url("../fonts/Lato-Bold.woff2") format("woff2"), url("../fonts/Lato-Bold.woff") format("woff");
+  font-weight: bold;
+  font-style: normal; }
+
+@font-face {
+  font-family: 'Lato';
+  src: local("Lato Regular"), local("Lato-Regular"), url("../fonts/Lato-Regular.woff2") format("woff2"), url("../fonts/Lato-Regular.woff") format("woff");
+  font-weight: normal;
+  font-style: normal; }
+
+@font-face {
+  font-family: 'Lato';
+  src: local("Lato Italic"), local("Lato-Italic"), url("../fonts/Lato-Italic.woff2") format("woff2"), url("../fonts/Lato-Italic.woff") format("woff");
+  font-weight: normal;
+  font-style: italic; }
+
+@font-face {
+  font-family: 'Indie Flower';
+  src: local("Indie Flower"), local("IndieFlower"), url("../fonts/IndieFlower.woff2") format("woff2"), url("../fonts/IndieFlower.woff") format("woff");
+  font-weight: normal;
+  font-style: normal; }
+
+header {
+  background: url("../images/background-menu.jpg") no-repeat;
+  background-position: center left;
+  background-size: cover;
+  width: 100vw;
+  height: 45vh; }
+  header li {
+    display: inline-block;
+    width: 12rem;
+    height: 20%;
+    position: relative;
+    top: 15px; }
+    header li .sign__link--rectangle {
+      width: 7rem;
+      height: 4rem;
+      background-color: #e3e6ec;
+      position: absolute; }
+      header li .sign__link--rectangle .link {
+        font-size: 1.4rem;
+        text-decoration: none;
+        font-family: "Indie Flower", cursive;
+        font-weight: bolder;
+        color: black;
+        padding-left: 3px; }
+      header li .sign__link--rectangle .active_link {
+        color: #a8bf23; }
+    header li .sign__link--triangle {
+      width: 0;
+      height: 0;
+      border-top: 2rem solid transparent;
+      border-bottom: 2rem solid transparent;
+      position: absolute;
+      border-left: 3rem solid #e3e6ec;
+      left: 7rem; }
+
+.map {
+  height: 28rem;
+  width: 60%; }
+
+.mount_icon {
+  position: relative;
+  left: -12px;
+  top: -12px;
+  cursor: pointer; }
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box; }
+
+body {
+  background-color: #4994eb;
+  font-family: "Lato", sans-serif; }
+
+.container {
+  max-width: 1280px;
+  margin: auto; }
