@@ -8,7 +8,7 @@ header {
 	li {
 		display: inline-block;
 		width: 12rem;
-		height: 20%;
+		height: 50px;
 		position: relative;
 		top: 15px;
 
@@ -18,7 +18,6 @@ header {
 			font-family: $menuFont;
 			font-weight: bolder;
 			color: black;
-			padding-left: 3px;
 			&:hover {
 				color: $activeColor;
 			}
@@ -32,6 +31,7 @@ header {
 			height: 4rem;
 			background-color: $menuColor;
 			position: absolute;
+			padding-left: 5px;
 		}
 		.sign__link--triangle{
 			width: 0;

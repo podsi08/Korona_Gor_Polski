@@ -18,7 +18,10 @@ class Menu extends React.Component {
         }
     }
 
-    animateClick = (event) => {
+    animateClick = (event, id) => {
+        console.log(id);
+
+        console.log(event.target);
         this.setState({
             class: ''
         }, ()=>{
@@ -29,6 +32,8 @@ class Menu extends React.Component {
             }, 100)
 
         })
+
+
     }
 
     render(){
@@ -37,22 +42,25 @@ class Menu extends React.Component {
                 <div className="container">
                     <nav>
                         <ul>
-                            <li onClick={this.animateClick} className={this.state.class} id='1'>
-                                <NavLink exact to='/' className= "link" activeClassName="active_link">
-                                    <div className="sign__link--rectangle">
-                                        <span>Strona Główna</span>
-                                    </div>
-                                    <div className="sign__link--triangle"></div>
-                                </NavLink>
-
+                            <li>
+                                <div onClick={(e) => this.animateClick(e, 1)} className={this.state.class} id='1'>
+                                    <NavLink exact to='/' className= "link" activeClassName="active_link">
+                                        <div className="sign__link--rectangle">
+                                            <span>Strona Główna</span>
+                                        </div>
+                                        <div className="sign__link--triangle"></div>
+                                    </NavLink>
+                                </div>
                             </li>
-                            <li onClick={this.animateClick} className={this.state.class} id='2'>
-                                <NavLink to='/map' className= "link" activeClassName="active_link">
-                                    <div className="sign__link--rectangle">
-                                        <span>Mapa</span>
-                                    </div>
-                                    <div className="sign__link--triangle"></div>
-                                </NavLink>
+                            <li>
+                                <div onClick={this.animateClick} className={this.state.class} id='2'>
+                                    <NavLink to='/map' className= "link" activeClassName="active_link">
+                                        <div className="sign__link--rectangle">
+                                            <span>Mapa</span>
+                                        </div>
+                                        <div className="sign__link--triangle"></div>
+                                    </NavLink>
+                                </div>
                             </li>
                             <li onClick={this.animateClick} className={this.state.class} id='3'>
                                 <NavLink to='/log' className= "link" activeClassName="active_link">

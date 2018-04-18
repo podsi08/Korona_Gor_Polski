@@ -2,7 +2,7 @@
 @import "partials/fonts";
 
 @import "modules/menu";
-@import "modules/map";
+@import "modules/map_container";
 @import "modules/about";
 
 * {
@@ -15,13 +15,12 @@
 		.container {
 			max-width: 1280px;
 			margin: auto;
-			& > * {
-				padding-left: 10px;
-				padding-right: 10px;
-			}
+			padding-left: 10px;
+			padding-right: 10px;
 			h1 {
-				margin-bottom: 20px;
 				font-family: "Indie Flower", cursive;
+				margin-bottom: 10px;
+				font-size: 2.5rem;
 			}
 		}
 	}

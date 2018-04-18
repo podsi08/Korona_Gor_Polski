@@ -32,7 +32,7 @@ header {
   header li {
     display: inline-block;
     width: 12rem;
-    height: 20%;
+    height: 50px;
     position: relative;
     top: 15px; }
     header li .link {
@@ -40,8 +40,7 @@ header {
       text-decoration: none;
       font-family: "Indie Flower", cursive;
       font-weight: bolder;
-      color: black;
-      padding-left: 3px; }
+      color: black; }
       header li .link:hover {
         color: #a8bf23; }
     header li .active_link {
@@ -50,7 +49,8 @@ header {
       width: 7rem;
       height: 4rem;
       background-color: #e3e6ec;
-      position: absolute; }
+      position: absolute;
+      padding-left: 5px; }
     header li .sign__link--triangle {
       width: 0;
       height: 0;
@@ -60,19 +60,43 @@ header {
       border-left: 3rem solid #e3e6ec;
       left: 7rem; }
 
-.map {
-  height: 28rem;
-  width: 60%; }
+.map_container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between; }
+  .map_container .map {
+    height: 40vh;
+    width: 100%; }
+    .map_container .map .mount_icon {
+      position: relative;
+      left: -12px;
+      top: -12px;
+      cursor: pointer;
+      width: 32px;
+      height: 32px;
+      background-image: url("../images/mountain-red.png");
+      border: hidden; }
+      .map_container .map .mount_icon:hover {
+        background-image: url("../images/mountain-green.png"); }
+  .map_container .description {
+    width: 100%; }
+    .map_container .description h1 {
+      margin-bottom: 0; }
+    .map_container .description h3 {
+      margin-bottom: 0.5rem; }
+    .map_container .description span {
+      font-size: 1.1rem; }
 
-.mount_icon {
-  position: relative;
-  left: -12px;
-  top: -12px;
-  cursor: pointer; }
+@media only screen and (min-width: 620px) {
+  .map_container .map {
+    width: 60%; }
+  .map_container .description {
+    width: 38%; } }
 
 p {
   text-indent: 30px;
-  text-align: justify; }
+  text-align: justify;
+  font-size: 1.1rem; }
 
 * {
   margin: 0;
@@ -83,10 +107,10 @@ p {
     font-family: "Lato", sans-serif; }
     * body .container {
       max-width: 1280px;
-      margin: auto; }
-      * body .container > * {
-        padding-left: 10px;
-        padding-right: 10px; }
+      margin: auto;
+      padding-left: 10px;
+      padding-right: 10px; }
       * body .container h1 {
-        margin-bottom: 20px;
-        font-family: "Indie Flower", cursive; }
+        font-family: "Indie Flower", cursive;
+        margin-bottom: 10px;
+        font-size: 2.5rem; }

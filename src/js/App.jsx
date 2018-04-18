@@ -10,7 +10,7 @@ import {
 } from 'react-router-dom';
 
 
-import Map from "./Map";
+import MapContainer from "./MapContainer";
 import Log from "./Log";
 import Home from "./Home";
 import Menu from "./Menu";
@@ -23,7 +23,7 @@ class App extends React.Component {
                     <Menu/>
                     <Switch>
                         <Route exact path="/" component={Home}/>
-                        <Route path="/map" component={Map}/>
+                        <Route path="/map" component={MapContainer}/>
                         <Route path="/log" component={Log}/>
                     </Switch>
                 </div>
