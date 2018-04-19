@@ -3,45 +3,53 @@ header {
 	background-position: center left;
 	background-size: cover;
 	width: 100vw;
-	height: 45vh;
+	height: 25vh;
 	margin-bottom: 20px;
-	li {
-		display: inline-block;
-		width: 12rem;
-		height: 50px;
-		position: relative;
-		top: 15px;
-
-		.link {
-			font-size: 1.4rem;
-			text-decoration: none;
-			font-family: $menuFont;
-			font-weight: bolder;
-			color: black;
-			&:hover {
+	ul{
+		display: flex;
+		flex-wrap: wrap;
+		list-style: none;
+		li {
+			width: 12rem;
+			position: relative;
+			top: 15px;
+			height: 5rem;
+			.link {
+				font-size: 1.4rem;
+				text-decoration: none;
+				font-family: $menuFont;
+				font-weight: bolder;
+				color: black;
+				&:hover {
+					color: $activeColor;
+				}
+			}
+			.active_link {
 				color: $activeColor;
 			}
-		}
-		.active_link {
-			color: $activeColor;
-		}
 
-		.sign__link--rectangle{
-			width: 7rem;
-			height: 4rem;
-			background-color: $menuColor;
-			position: absolute;
-			padding-left: 5px;
+			.sign__link--rectangle{
+				width: 7rem;
+				height: 4rem;
+				background-color: $menuColor;
+				position: absolute;
+				padding-left: 5px;
+			}
+			.sign__link--triangle{
+				width: 0;
+				height: 0;
+				border-top: 2rem solid transparent;
+				border-bottom: 2rem solid transparent;
+				position: absolute;
+				border-left: 3rem solid $menuColor;
+				left: 7rem;
+			}
 		}
-		.sign__link--triangle{
-			width: 0;
-			height: 0;
-			border-top: 2rem solid transparent;
-			border-bottom: 2rem solid transparent;
-			position: absolute;
-			border-left: 3rem solid $menuColor;
-			left: 7rem;
-		}
+	}
+}
 
+@media only screen and (min-width: 620px){
+	header {
+		height: 45vh;
 	}
 }

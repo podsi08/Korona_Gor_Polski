@@ -1,7 +1,6 @@
 import React from 'react';
 import Map from './Map.jsx';
-import mountainRed from '../images/mountain-red.png';
-import mountainGreen from '../images/mountain-green.png';
+
 
 class MapContainer extends React.Component {
     constructor(props){
@@ -9,11 +8,14 @@ class MapContainer extends React.Component {
 
         this.state = {
             id: '',
-            name: '',
+            name: 'Wybierz górę',
             range: '',
             height: '',
             description: '',
+            // date: '',
+            // note: '',
             data: false,
+            // userData: false
         }
     }
 
@@ -28,7 +30,8 @@ class MapContainer extends React.Component {
             console.log(data);
         }).catch(err => {
             console.log(err)
-        })
+        });
+
     }
 
     changeDescription = (id) => {
@@ -42,7 +45,6 @@ class MapContainer extends React.Component {
             range: clickedObject[0].range,
             height: clickedObject[0].height + 'm n.p.m.',
             description: clickedObject[0].description,
-
         })
     };
 

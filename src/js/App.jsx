@@ -11,7 +11,7 @@ import {
 
 
 import MapContainer from "./MapContainer";
-import Log from "./Log";
+import LogSection from "./LogSection";
 import Home from "./Home";
 import Menu from "./Menu";
 
@@ -24,7 +24,7 @@ class App extends React.Component {
                     <Switch>
                         <Route exact path="/" component={Home}/>
                         <Route path="/map" component={MapContainer}/>
-                        <Route path="/log" component={Log}/>
+                        <Route path="/log" component={LogSection}/>
                     </Switch>
                 </div>
             </HashRouter>

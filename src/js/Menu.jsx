@@ -34,7 +34,7 @@ class Menu extends React.Component {
         })
 
 
-    }
+    };
 
     render(){
         return(
@@ -63,9 +63,9 @@ class Menu extends React.Component {
                                 </div>
                             </li>
                             <li onClick={this.animateClick} className={this.state.class} id='3'>
-                                <NavLink to='/log' className= "link" activeClassName="active_link">
+                                <NavLink to='/map/form' className= "link" activeClassName="active_link">
                                     <div className="sign__link--rectangle">
-                                        <span>Logowanie</span>
+                                        <span>Dodaj podróż</span>
                                     </div>
                                     <div className="sign__link--triangle"></div>
                                 </NavLink>
