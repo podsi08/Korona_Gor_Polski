@@ -1,6 +1,16 @@
 import React from 'react';
 import Map from './Map.jsx';
+import Home from "./Home";
+import Form from "./Form";
+import Travels from "./Travels";
 
+import {
+    HashRouter,
+    Route,
+    Link,
+    Switch,
+    NavLink
+} from 'react-router-dom';
 
 class MapContainer extends React.Component {
     constructor(props){
@@ -12,10 +22,8 @@ class MapContainer extends React.Component {
             range: '',
             height: '',
             description: '',
-            // date: '',
-            // note: '',
             data: false,
-            // userData: false
+            storage: false
         }
     }
 
@@ -31,6 +39,10 @@ class MapContainer extends React.Component {
         }).catch(err => {
             console.log(err)
         });
+
+        this.setState({
+            storage: JSON.parse(localStorage.getItem('korona_gor'))
+        })
 
     }
 
@@ -48,22 +60,25 @@ class MapContainer extends React.Component {
         })
     };
 
-
-
     render(){
         return(
-            <div className='container animated slideInRight'>
-                <h1>Mapy</h1>
-                <div className='map_container'>
-                    <Map data={this.state.data}
-                        selectedMountainCallback={this.changeDescription}
+            <div>
+                <div className='container animated slideInRight'>
+                    <h1>Mapy</h1>
+                    <div className='map_container'>
+
+
+                        <Map data={this.state.data}
+                             selectedMountainCallback={this.changeDescription}
                         />
-                    <Description name={this.state.name}
-                                 range={this.state.range}
-                                 height={this.state.height}
-                                 description={this.state.description}/>
+                        <Description name={this.state.name}
+                                     range={this.state.range}
+                                     height={this.state.height}
+                                     description={this.state.description}/>
+                    </div>
                 </div>
             </div>
+
         )
     }
 }

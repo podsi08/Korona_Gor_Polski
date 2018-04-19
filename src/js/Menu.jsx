@@ -63,9 +63,9 @@ class Menu extends React.Component {
                                 </div>
                             </li>
                             <li onClick={this.animateClick} className={this.state.class} id='3'>
-                                <NavLink to='/map/form' className= "link" activeClassName="active_link">
+                                <NavLink to='/yourtravels' className= "link" activeClassName="active_link">
                                     <div className="sign__link--rectangle">
-                                        <span>Dodaj podróż</span>
+                                        <span>Twoje podróże</span>
                                     </div>
                                     <div className="sign__link--triangle"></div>
                                 </NavLink>
