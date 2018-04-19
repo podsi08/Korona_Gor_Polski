@@ -1,16 +1,5 @@
 import React from 'react';
 import Map from './Map.jsx';
-import Home from "./Home";
-import Form from "./Form";
-import Travels from "./Travels";
-
-import {
-    HashRouter,
-    Route,
-    Link,
-    Switch,
-    NavLink
-} from 'react-router-dom';
 
 class MapContainer extends React.Component {
     constructor(props){

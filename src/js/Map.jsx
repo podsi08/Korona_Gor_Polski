@@ -1,66 +1,45 @@
 import React, { Component } from 'react';
 import GoogleMapReact from 'google-map-react';
-
-
-class MountIcon extends React.Component {
-    handleClick = () => {
-        if(typeof this.props.clickFunction1 === 'function' && typeof this.props.clickFunction2 === 'function'){
-            this.props.clickFunction1(this.props.id);
-            this.props.clickFunction2(this.props.id);
-        }
-    };
-
-    render(){
-        return(
-            <div onClick={this.handleClick}
-                 className={this.props.active ? 'mount_icon_active' : 'mount_icon_deactive'}/>
-        )
-    }
-}
+import MountIcon from './MountIcon'
 
 class Map extends Component {
+    static defaultProps = {
+        center: {lat: 50.00, lng: 19.50},
+        zoom: 7
+    };
+
     constructor(props) {
         super(props);
 
         this.state = {
             activeMountainId: -1
         }
+
+        this.handleMountainClick = this.handleMountainClick.bind(this);
+        this.renderIcons = this.renderIcons.bind(this);
     }
 
-    static defaultProps = {
-        center: {lat: 50.00, lng: 19.50},
-        zoom: 7
-    };
-
-    changeActiveMountain = (id) => {
+    handleMountainClick(id) {
         this.setState({
             activeMountainId: id
-        })
-    };
+        });
+        this.props.selectedMountainCallback(id);
+    }
+
+    renderIcons() {
+        if (this.props.data) {
+            return this.props.data.map((mountain) => {
+                return (<MountIcon
+                    key={mountain.id}
+                    id={mountain.id}
+                    lat={mountain.lat}
+                    lng={mountain.lng}
+                    onMountainClicked={this.handleMountainClick}/>);
+            });
+        }
+    }
 
     render() {
-        let iconsRender = () => {
-            if(this.props.data === false){
-                return <p>...</p>
-            } else {
-                return (
-
-                    this.props.data.map((elem) => {
-                        return (<MountIcon
-                            key={elem.id}
-                            id={elem.id}
-                            lat={elem.lat}
-                            lng={elem.lng}
-                            clickFunction1={this.props.selectedMountainCallback}
-                            clickFunction2={this.changeActiveMountain}
-                            active={this.state.activeMountainId === elem.id}
-                        />);
-                    })
-
-                )
-            }
-        };
-
         return (
             <div className='map'>
                 <GoogleMapReact
@@ -68,7 +47,7 @@ class Map extends Component {
                     defaultCenter={this.props.center}
                     defaultZoom={this.props.zoom}>
 
-                    {iconsRender()}
+                    {this.renderIcons()}
 
                 </GoogleMapReact>
             </div>
@@ -77,6 +56,3 @@ class Map extends Component {
 }
 
 export default Map
-
-
-
