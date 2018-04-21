@@ -4,7 +4,7 @@
 @import "modules/menu";
 @import "modules/map_container";
 @import "modules/about";
-
+@import "modules/form";
 
 
 * {
@@ -22,21 +22,30 @@
 			h1 {
 				font-family: "Indie Flower", cursive;
 				margin-bottom: 10px;
-				font-size: 25px;
+				font-size: 1.4rem;
 			}
 		}
 	}
 }
 
 
-@media only screen and (min-width: 621px) and (max-width: 1200px) {
-	h1 {
-		font-size: 31px;
+@media only screen and (min-width: 481px) and (max-width: 1200px) {
+	body{
+		.container {
+			h1 {
+				font-size: 1.7rem;
+			}
+		}
 	}
+
 }
 
 @media only screen and (min-width: 1201px){
-	h1 {
-		font-size: 35px;
+	body{
+		.container {
+			h1 {
+				font-size: 1.9rem;
+			}
+		}
 	}
 }
