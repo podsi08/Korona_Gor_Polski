@@ -4,8 +4,10 @@ import MountIcon from './MountIcon'
 
 class Map extends Component {
     static defaultProps = {
-        center: {lat: 50.00, lng: 19.50},
-        zoom: 7
+        mapConfig: {
+            center: {lat: 50.00, lng: 19.50},
+            zoom: 7
+        }
     };
 
     constructor(props) {
@@ -27,16 +29,14 @@ class Map extends Component {
     }
 
     renderIcons() {
-        if (this.props.data) {
-            return this.props.data.map((mountain) => {
-                return (<MountIcon
-                    key={mountain.id}
-                    id={mountain.id}
-                    lat={mountain.lat}
-                    lng={mountain.lng}
-                    onMountainClicked={this.handleMountainClick}/>);
-            });
-        }
+        return this.props.data.map((mountain) => {
+            return (<MountIcon
+                key={mountain.id}
+                id={mountain.id}
+                lat={mountain.latitude}
+                lng={mountain.longitude}
+                onMountainClicked={this.handleMountainClick}/>);
+        });
     }
 
     render() {
@@ -44,8 +44,8 @@ class Map extends Component {
             <div className='map'>
                 <GoogleMapReact
                     bootstrapURLKeys={{ key: ['AIzaSyDiPV4G6a1Nvo4VQcXBXh2-vsn_WcjE074'] }}
-                    defaultCenter={this.props.center}
-                    defaultZoom={this.props.zoom}>
+                    defaultCenter={this.props.mapConfig.center}
+                    defaultZoom={this.props.mapConfig.zoom}>
 
                     {this.renderIcons()}
 

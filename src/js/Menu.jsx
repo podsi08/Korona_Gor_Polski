@@ -1,12 +1,6 @@
 import React from 'react';
 import '../scss/main.scss';
-import {
-    HashRouter,
-    Route,
-    Link,
-    Switch,
-    NavLink
-} from 'react-router-dom';
+import {NavLink} from 'react-router-dom';
 
 
 class Menu extends React.Component {
@@ -19,9 +13,6 @@ class Menu extends React.Component {
     }
 
     animateClick = (event, id) => {
-        console.log(id);
-
-        console.log(event.target);
         this.setState({
             class: ''
         }, ()=>{

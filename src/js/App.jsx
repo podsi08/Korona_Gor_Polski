@@ -4,9 +4,7 @@ import '../scss/main.css';
 import {
     HashRouter,
     Route,
-    Link,
-    Switch,
-    NavLink
+    Switch
 } from 'react-router-dom';
 
 
@@ -23,7 +21,11 @@ class App extends React.Component {
                     <Menu/>
                     <Switch>
                         <Route exact path="/" component={Home}/>
-                        <Route path="/map" component={MapContainer}/>
+                        <Route path="/map" render={() => {
+                                return (
+                                    <MapContainer mountainsDataUri="http://localhost:3001/mountains"/>
+                                );
+                        }}/>
                         <Route path="/yourtravels" component={YourTravels}/>
                     </Switch>
                 </div>
