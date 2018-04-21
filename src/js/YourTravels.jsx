@@ -9,7 +9,7 @@ class YourTravels extends React.Component {
         this.state = {
             storage: null,
             data: false,
-            name: '',
+            name: 'Wybierz górę',
             range: '',
             height: '',
             date: '',
@@ -35,7 +35,7 @@ class YourTravels extends React.Component {
             storage: JSON.parse(localStorage.getItem('korona_gor'))
         }, () => {
             this.setState({
-                gainedMountains: this.state.storage.map(elem => elem.name)
+                gainedMountains: this.state.storage === null ? [] : this.state.storage.map(elem => elem.name)
             })
         })
     }
@@ -56,8 +56,8 @@ class YourTravels extends React.Component {
         };
 
         if (clickedObjectTravelData.length === 0) {
-            mountain.date = "Góra jeszcze niezdobyta";
-            mountain.note = "";
+            mountain.date = "";
+            mountain.note = "Góra jeszcze niezdobyta... Nie patrz już w ten monitor i zrób coś z tym!";
         } else {
             mountain.date = `Data zdobycia: ${clickedObjectTravelData[0].date}`;
             mountain.note = clickedObjectTravelData[0].note;

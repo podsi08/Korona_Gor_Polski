@@ -1,0 +1,51 @@
+form {
+	input {
+		height: 25px;
+		margin-top: 7px;
+		margin-bottom: 7px;
+		width: 50%;
+	}
+	input[type='submit']{
+		background-color: $menuColor;
+		color: darken($backgroundColor, 30%);
+		font-size: 0.8rem;
+		width: 35%;
+		&:hover {
+			color: darken($activeColor, 10%);
+			background-color: lighten($menuColor, 20%);
+		}
+	}
+	textarea {
+		width: 80%;
+		height: 100px;
+		margin-top: 7px;
+	}
+	.error_message {
+		color: $errorColor;
+		font-weight: bold;
+	}
+	h3 {
+		font-size: 0.8rem;
+	}
+}
+
+@media only screen and (min-width: 481px) and (max-width: 1200px) {
+	form {
+		h3 {
+			font-size: 0.9rem;
+		}
+	}
+
+}
+
+@media only screen and (min-width: 1201px){
+	form {
+		h3 {
+			font-size: 1.2rem;
+		}
+		input[type='submit']{
+			height: 35px;
+			font-size: 1rem;
+		}
+	}
+}

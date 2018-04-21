@@ -7,15 +7,18 @@ header {
 	margin-bottom: 20px;
 	ul{
 		display: flex;
+		flex-direction: column;
 		flex-wrap: wrap;
 		list-style: none;
+		height: 100%;
 		li {
-			width: 12rem;
+			width: 8rem;
 			position: relative;
 			top: 15px;
-			height: 5rem;
+			height: 2rem;
+			margin-bottom: 12px;
 			.link {
-				font-size: 1.4rem;
+				font-size: 0.8rem;
 				text-decoration: none;
 				font-family: $menuFont;
 				font-weight: bolder;
@@ -29,27 +32,76 @@ header {
 			}
 
 			.sign__link--rectangle{
-				width: 7rem;
-				height: 4rem;
+				width: 4rem;
+				height: 2.4rem;
 				background-color: $menuColor;
 				position: absolute;
 				padding-left: 5px;
 			}
 			.sign__link--triangle{
-				width: 0;
-				height: 0;
-				border-top: 2rem solid transparent;
-				border-bottom: 2rem solid transparent;
+				border-top: 1.2rem solid transparent;
+				border-bottom: 1.2rem solid transparent;
 				position: absolute;
-				border-left: 3rem solid $menuColor;
-				left: 7rem;
+				border-left: 2rem solid $menuColor;
+				left: 4rem;
 			}
 		}
 	}
 }
 
-@media only screen and (min-width: 620px){
+
+@media only screen and (min-width: 481px) and (max-width: 1200px) {
 	header {
-		height: 45vh;
+		height: 30vh;
+		ul {
+			flex-direction: row;
+			li {
+				width: 9rem;
+				height: 5rem;
+				.link {
+					font-size: 1.2rem;
+				}
+
+				.sign__link--rectangle {
+					width: 5.5rem;
+					height: 3.6rem;
+				}
+				.sign__link--triangle {
+					border-top: 1.8rem solid transparent;
+					border-bottom: 1.8rem solid transparent;
+					border-left: 2.5rem solid $menuColor;
+					left: 5.5rem;
+				}
+			}
+		}
 	}
+
+}
+
+
+@media only screen and (min-width: 1201px){
+	header {
+		height: 34vh;
+		ul {
+			flex-direction: row;
+			li {
+				width: 13rem;
+				height: 5rem;
+				.link {
+					font-size: 1.4rem;
+				}
+				.sign__link--rectangle {
+					width: 7rem;
+					height: 5rem;
+				}
+				.sign__link--triangle {
+					border-top: 2.5rem solid transparent;
+					border-bottom: 2.5rem solid transparent;
+					border-left: 3rem solid $menuColor;
+					left: 7rem;
+				}
+			}
+		}
+	}
+
 }
