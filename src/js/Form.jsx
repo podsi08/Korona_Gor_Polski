@@ -1,11 +1,13 @@
 import React from 'react';
+import Select from 'react-select';
 
 class Form extends React.Component {
     constructor(props){
         super(props);
 
+        console.log(props);
         this.state = {
-            name: '',
+            selectedName: '',
             date: '',
             note: '',
             errorMessage: [],
@@ -26,12 +28,12 @@ class Form extends React.Component {
     checkData = (e) => {
         e.preventDefault();
 
-        if(this.state.name.length === 0){
-            this.setState({
-                errorMessage: [...this.state.errorMessage, 'Musisz wybrać górę'],
-                error: true
-            })
-        }
+        // if(this.state.name.length === 0){
+        //     this.setState({
+        //         errorMessage: [...this.state.errorMessage, 'Musisz wybrać górę'],
+        //         error: true
+        //     })
+        // }
 
         if(this.state.date.length === 0){
             this.setState({
@@ -44,7 +46,7 @@ class Form extends React.Component {
         if (!this.state.error){
 
             let newTravel = {
-                name: this.state.name,
+                name: this.state.selectedName.value,
                 date: this.state.date,
                 note: this.state.note
             };
@@ -64,7 +66,7 @@ class Form extends React.Component {
 
             //po zatwierdzeniu czyszczę okna formularza
             this.setState({
-                name: '',
+                selectedName: '',
                 date: '',
                 note: ''
 
@@ -78,16 +80,33 @@ class Form extends React.Component {
         })
     };
 
+    handleSelectChange = (selectedOption) => {
+
+        this.setState({
+            selectedName: selectedOption
+        })
+    };
+
     render(){
+        //przygotowanie danych do select (filtruję tylko góry, które nie zostały zdobyte)
+        const mountainsToGain = [];
+
+        this.props.data.filter((elem) => {
+            return this.props.gainedMountains.indexOf(elem.name) === -1
+        }).forEach((elem) => {
+            mountainsToGain.push({value: elem.name, label: elem.name})
+        });
+
         return(
             <div className='form'>
                 <h1>Dodaj swoje wspomnienia</h1>
                 <form>
                     <h3>Jaką zdobyłeś górę?</h3>
-                    <input type='text'
-                           id='name'
-                           value={this.state.name}
-                           onChange={this.handleInput}/>
+                    <Select name='mountain'
+                            value={this.state.selectedName}
+                            options={mountainsToGain}
+                            onChange={this.handleSelectChange}
+                            />
                     <h3>Data zdobycia:</h3>
                     <input type='date'
                            id='date'

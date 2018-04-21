@@ -8,7 +8,7 @@ class YourTravels extends React.Component {
 
         this.state = {
             storage: null,
-            data: false,
+            data: [],
             name: 'Wybierz górę',
             range: '',
             height: '',
@@ -88,7 +88,7 @@ class YourTravels extends React.Component {
                                      height={this.state.height}
                                      date={this.state.date}
                                      note={this.state.note}/>
-                    <Form/>
+                    <Form data={this.state.data} gainedMountains={this.state.gainedMountains}/>
                 </div>
 
             </div>

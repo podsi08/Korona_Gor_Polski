@@ -1,4 +1,5 @@
 import React from 'react';
+import 'react-select/dist/react-select.css';
 import 'animate.css';
 import '../scss/main.css';
 import {

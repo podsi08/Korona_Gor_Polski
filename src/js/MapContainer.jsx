@@ -12,8 +12,7 @@ class MapContainer extends React.Component {
             range: '',
             height: '',
             description: '',
-            data: false,
-            storage: false
+            data: false
         }
     }
 
@@ -29,12 +28,7 @@ class MapContainer extends React.Component {
         }).catch(err => {
             console.log(err)
         });
-
-        this.setState({
-            storage: JSON.parse(localStorage.getItem('korona_gor'))
-        })
-
-    }
+   }
 
     changeDescription = (id) => {
         let clickedObject = this.state.data.filter((elem) => {
