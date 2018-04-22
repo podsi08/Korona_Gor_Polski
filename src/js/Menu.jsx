@@ -22,8 +22,8 @@ class Menu extends React.Component {
                     </nav>
                 </div>
             </header>
-        )
+        );
     }
 }
 
-export default Menu
+export default Menu;

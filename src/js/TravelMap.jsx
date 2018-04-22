@@ -1,8 +1,8 @@
-import React, { Component } from 'react';
+import React from 'react';
 import GoogleMapReact from 'google-map-react';
-import MountIcon from './MountIcon'
+import TravelMountIcon from './TravelMountIcon.jsx';
 
-class Map extends Component {
+class TravelMap extends React.Component {
     static defaultProps = {
         mapConfig: {
             center: {lat: 50.00, lng: 19.50},
@@ -17,11 +17,11 @@ class Map extends Component {
             activeMountainId: -1
         }
 
-        this.handleMountainClick = this.handleMountainClick.bind(this);
+        this.changeActiveMountain = this.changeActiveMountain.bind(this);
         this.renderIcons = this.renderIcons.bind(this);
     }
 
-    handleMountainClick(id) {
+    changeActiveMountain(id) {
         this.setState({
             activeMountainId: id
         });
@@ -31,13 +31,15 @@ class Map extends Component {
     }
 
     renderIcons() {
-        return this.props.data.map(mountain =>
-            <MountIcon
+        return this.props.mountains.map(mountain =>
+            <TravelMountIcon
                 key={mountain.id}
                 id={mountain.id}
+                name={mountain.name}
                 lat={mountain.latitude}
                 lng={mountain.longitude}
-                onMountainClicked={this.handleMountainClick}/>
+                onMountainClicked={this.changeActiveMountain}
+                gained={this.props.gainedMountains.indexOf(mountain.name) !== -1}/>
         );
     }
 
@@ -57,4 +59,4 @@ class Map extends Component {
     }
 }
 
-export default Map
+export default TravelMap;

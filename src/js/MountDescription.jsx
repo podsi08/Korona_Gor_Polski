@@ -1,6 +1,6 @@
 import React from 'react';
 
-class Description extends React.Component {
+class MountDescription extends React.Component {
     render() {
         if (this.props.mountain !== null) {
             return (
@@ -21,4 +21,4 @@ class Description extends React.Component {
     }
 }
 
-export default Description;
+export default MountDescription;

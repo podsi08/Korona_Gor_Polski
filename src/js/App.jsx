@@ -13,25 +13,27 @@ import Home from "./Home";
 import Menu from "./Menu";
 import YourTravels from "./YourTravels";
 
+const mountainsDataUri = 'http://localhost:3001/mountains'
+
 class App extends React.Component {
-    render(){
+    render() {
         return(
             <HashRouter>
                 <div>
                     <Menu/>
                     <Switch>
                         <Route exact path="/" component={Home}/>
-                        <Route path="/map" render={() => {
-                                return (
-                                    <MapContainer mountainsDataUri="http://localhost:3001/mountains"/>
-                                );
-                        }}/>
-                        <Route path="/yourtravels" component={YourTravels}/>
+                        <Route path="/map" render={() =>
+                            <MapContainer mountainsDataUri={mountainsDataUri}/>
+                        }/>
+                        <Route path="/yourtravels" render={() =>
+                            <YourTravels mountainsDataUri={mountainsDataUri}/>
+                        }/>
                     </Switch>
                 </div>
             </HashRouter>
-        )
+        );
     }
 }
 
-export default App
+export default App;

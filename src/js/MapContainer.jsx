@@ -1,6 +1,6 @@
 import React from 'react';
 import Map from './Map.jsx';
-import Description from './Description.jsx'
+import MountDescription from './MountDescription.jsx'
 import Mountain from './model/Mountain.js'
 
 class MapContainer extends React.Component {
@@ -26,7 +26,7 @@ class MapContainer extends React.Component {
     }
 
     selectMountain(id) {
-        let clickedMountain = this.state.mountains.find((mountain) => {
+        let clickedMountain = this.state.mountains.find(mountain => {
             return id === mountain.id;
         });
 
@@ -46,7 +46,7 @@ class MapContainer extends React.Component {
                         <Map
                             data={this.state.mountains}
                             selectedMountainCallback={this.selectMountain}/>
-                        <Description
+                        <MountDescription
                             mountain={this.state.selectedMountain}
                             prompt="Wybierz górę"/>
                     </div>
