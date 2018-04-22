@@ -27,7 +27,7 @@ class App extends React.Component {
                             <MapContainer mountainsDataUri={mountainsDataUri}/>
                         }/>
                         <Route path="/yourtravels" render={() =>
-                            <YourTravels mountainsDataUri={mountainsDataUri}/>
+                            <YourTravels mountainsDataUri={mountainsDataUri} localStorageKey='korona_gor'/>
                         }/>
                     </Switch>
                 </div>

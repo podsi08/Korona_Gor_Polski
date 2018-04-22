@@ -22,18 +22,15 @@ class YourTravels extends React.Component {
         fetch(this.props.mountainsDataUri).then(response => {
             return response.json()
         }).then(data => {
+            const mountains = data.map(mountainData => Mountain.fromServerData(mountainData));
+            const travels = JSON.parse(localStorage.getItem(this.props.localStorageKey)) || [];
             this.setState({
-                mountains: data.map(data => Mountain.fromServerData(data))
+                mountains: mountains,
+                travels: travels,
+                gainedMountains: mountains.filter(mountain => travels.map(travel => travel.name).indexOf(mountain.name) !== -1).map(mountain => mountain.id)
             });
         });
 
-        this.setState({
-            travels: JSON.parse(localStorage.getItem('korona_gor')) || []
-        }, () => {
-            this.setState({
-                gainedMountains: this.state.travels === null ? [] : this.state.travels.map(elem => elem.name)
-            });
-        });
     }
 
     changeTravelDescription(id) {

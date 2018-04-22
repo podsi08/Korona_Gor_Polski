@@ -39,7 +39,7 @@ class TravelMap extends React.Component {
                 lat={mountain.latitude}
                 lng={mountain.longitude}
                 onMountainClicked={this.changeActiveMountain}
-                gained={this.props.gainedMountains.indexOf(mountain.name) !== -1}/>
+                gained={this.props.gainedMountains.indexOf(mountain.id) !== -1}/>
         );
     }
 
