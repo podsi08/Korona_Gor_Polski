@@ -1,41 +1,7 @@
 import React from 'react';
-import '../scss/main.scss';
-import {
-    HashRouter,
-    Route,
-    Link,
-    Switch,
-    NavLink
-} from 'react-router-dom';
-
+import MenuItem from './MenuItem';
 
 class Menu extends React.Component {
-    constructor(props){
-        super(props);
-
-        this.state = {
-            class: ""
-        }
-    }
-
-    animateClick = (event, id) => {
-        console.log(id);
-
-        console.log(event.target);
-        this.setState({
-            class: ''
-        }, ()=>{
-            setTimeout(() => {
-                this.setState({
-                    class: 'animated swing'
-                })
-            }, 100)
-
-        })
-
-
-    };
-
     render(){
         return(
             <header>
@@ -43,32 +9,13 @@ class Menu extends React.Component {
                     <nav>
                         <ul>
                             <li>
-                                <div onClick={(e) => this.animateClick(e, 1)} className={this.state.class} id='1'>
-                                    <NavLink exact to='/' className= "link" activeClassName="active_link">
-                                        <div className="sign__link--rectangle">
-                                            <span>Strona Główna</span>
-                                        </div>
-                                        <div className="sign__link--triangle"></div>
-                                    </NavLink>
-                                </div>
+                                <MenuItem exactLink={true} path='/' menuName='Strona główna'/>
                             </li>
                             <li>
-                                <div onClick={this.animateClick} className={this.state.class} id='2'>
-                                    <NavLink to='/map' className= "link" activeClassName="active_link">
-                                        <div className="sign__link--rectangle">
-                                            <span>Mapa</span>
-                                        </div>
-                                        <div className="sign__link--triangle"></div>
-                                    </NavLink>
-                                </div>
+                                <MenuItem path='/map' menuName='Mapa'/>
                             </li>
-                            <li onClick={this.animateClick} className={this.state.class} id='3'>
-                                <NavLink to='/yourtravels' className= "link" activeClassName="active_link">
-                                    <div className="sign__link--rectangle">
-                                        <span>Twoje podróże</span>
-                                    </div>
-                                    <div className="sign__link--triangle"></div>
-                                </NavLink>
+                            <li>
+                                <MenuItem path='/yourtravels' menuName='Twoje podróże'/>
                             </li>
                         </ul>
                     </nav>

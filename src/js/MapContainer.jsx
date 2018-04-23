@@ -1,6 +1,6 @@
 import React from 'react';
 import Map from './Map.jsx';
-
+import Description from './Description';
 
 class MapContainer extends React.Component {
     constructor(props){
@@ -67,18 +67,6 @@ class MapContainer extends React.Component {
     }
 }
 
-class Description extends React.Component {
 
-    render(){
-        return(
-            <div className='description'>
-                <h1>{this.props.name}</h1>
-                <h3>{this.props.range}</h3>
-                <h3>{this.props.height}</h3>
-                <span>{this.props.description}</span>
-            </div>
-        )
-    }
-}
 
 export default MapContainer

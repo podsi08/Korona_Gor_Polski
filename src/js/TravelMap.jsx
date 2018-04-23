@@ -1,13 +1,15 @@
-import React, { Component } from 'react';
+import React from "react";
 import GoogleMapReact from 'google-map-react';
-import MountIcon from './MountIcon';
+import TravelMountIcon from './TravelMountIcon';
 
-class Map extends Component {
+class TravelMap extends React.Component {
     constructor(props) {
         super(props);
 
+
         this.state = {
             activeMountainId: -1
+
         }
     }
 
@@ -30,14 +32,14 @@ class Map extends Component {
                 return (
 
                     this.props.data.map((elem) => {
-                        return (<MountIcon
+                        return (<TravelMountIcon
                             key={elem.id}
-                            id={elem.id}
+                            name={elem.name}
                             lat={elem.lat}
                             lng={elem.lng}
                             clickFunction1={this.props.selectedMountainCallback}
                             clickFunction2={this.changeActiveMountain}
-                            active={this.state.activeMountainId === elem.id}
+                            gained={this.props.gainedMountains.indexOf(elem.name) !== -1}
                         />);
                     })
 
@@ -60,7 +62,4 @@ class Map extends Component {
     }
 }
 
-export default Map
-
-
-
+export default TravelMap
