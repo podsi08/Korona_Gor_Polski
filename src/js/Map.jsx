@@ -8,51 +8,46 @@ class Map extends Component {
 
         this.state = {
             activeMountainId: -1
-        }
+        };
     }
 
     static defaultProps = {
-        center: {lat: 50.00, lng: 19.50},
-        zoom: 7
+        mapConfig: {
+            center: {lat: 50.00, lng: 19.50},
+            zoom: 7
+        }
     };
 
-    changeActiveMountain = (id) => {
+    //po kliknięciu w ikonę zmienia się id aktywnej góry porównywane w props MountIcon active
+    handleMountainClick = (id) => {
         this.setState({
             activeMountainId: id
-        })
+        });
+        if (typeof this.props.selectedMountainCallback === 'function') {
+            this.props.selectedMountainCallback(id);
+        }
+    };
+
+    iconsRender = () => {
+        return this.props.data.map((mountain) =>
+            <MountIcon
+            key={mountain.id}
+            id={mountain.id}
+            lat={mountain.latitude}
+            lng={mountain.longitude}
+            active={this.state.activeMountainId === mountain.id}
+            onMountainClicked={this.handleMountainClick}/>)
     };
 
     render() {
-        let iconsRender = () => {
-            if(this.props.data === false){
-                return <p>...</p>
-            } else {
-                return (
-
-                    this.props.data.map((elem) => {
-                        return (<MountIcon
-                            key={elem.id}
-                            id={elem.id}
-                            lat={elem.lat}
-                            lng={elem.lng}
-                            clickFunction1={this.props.selectedMountainCallback}
-                            clickFunction2={this.changeActiveMountain}
-                            active={this.state.activeMountainId === elem.id}
-                        />);
-                    })
-
-                )
-            }
-        };
-
         return (
             <div className='map'>
                 <GoogleMapReact
                     bootstrapURLKeys={{ key: ['AIzaSyDiPV4G6a1Nvo4VQcXBXh2-vsn_WcjE074'] }}
-                    defaultCenter={this.props.center}
-                    defaultZoom={this.props.zoom}>
+                    defaultCenter={this.props.mapConfig.center}
+                    defaultZoom={this.props.mapConfig.zoom}>
 
-                    {iconsRender()}
+                    {this.iconsRender()}
 
                 </GoogleMapReact>
             </div>

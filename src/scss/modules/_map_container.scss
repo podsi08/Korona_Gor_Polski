@@ -16,7 +16,7 @@
 		height: 50vh;
 		width: 100%;
 		margin-bottom: 15px;
-		.mount_icon_deactive {
+		.mount_icon_inactive {
 			@extend %mount_icon;
 			background-image: url("../images/mountain-red.png");
 			&:hover {

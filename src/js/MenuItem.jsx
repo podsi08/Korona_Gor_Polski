@@ -13,6 +13,10 @@ class MenuItem extends React.Component {
         }
     }
 
+    static defaultProps = {
+        exactLink: false
+    };
+
     animateClick = () => {
         // po kliknięciu dodajemy komponentowi klasę i zabieramy ją po upływie 100ms (bez timeoutu animacja nie wykonywała się)
         this.setState({

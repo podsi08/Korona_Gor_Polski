@@ -1,47 +1,52 @@
 import React from 'react';
 import Map from './Map.jsx';
-import Description from './Description';
+import MountDescription from './MountDescription';
+import Mountain from './model/Mountain.js';
 
 class MapContainer extends React.Component {
     constructor(props){
         super(props);
 
+        //na początku nie ma danych z serwera - mountains: [], nie jest też wybrana żadna góra
         this.state = {
-            id: '',
-            name: 'Wybierz górę',
-            range: '',
-            height: '',
-            description: '',
-            data: false
+            selectedMountain: null,
+            mountains: []
         }
     }
 
     componentDidMount(){
+        //pobieram dane z serwera
         fetch('http://localhost:3001/mountains').then(response => {
             console.log(response);
             return response.json()
         }).then(data => {
             this.setState({
-                data: data
+                //z pobranych danych tworzę obiekty Mountain wg modelu w ./model/Mountain.js
+                mountains: data.map(mountain => new Mountain(
+                    mountain.id,
+                    mountain.name,
+                    mountain.height,
+                    mountain.lng,
+                    mountain.lat,
+                    mountain.range,
+                    mountain.description
+                ))
             });
-            console.log(data);
-        }).catch(err => {
-            console.log(err)
         });
-   }
+    }
 
-    changeDescription = (id) => {
-        let clickedObject = this.state.data.filter((elem) => {
-            return id === elem.id;
+    //funkcja wykona się po kliknięciu w ikonę na mapie, zmienia się selectedMountain przekazywane do Description
+    // w props jako mountain
+    selectMountain = (id) => {
+        let clickedMountain = this.state.mountains.find(mount => {
+            return id === mount.id;
         });
 
-        this.setState({
-            id: clickedObject[0].id,
-            name: clickedObject[0].name,
-            range: clickedObject[0].range,
-            height: clickedObject[0].height + 'm n.p.m.',
-            description: clickedObject[0].description,
-        })
+        if(typeof clickedMountain !== 'undefined'){
+            this.setState({
+                selectedMountain: clickedMountain
+            });
+        }
     };
 
     render(){
@@ -50,15 +55,10 @@ class MapContainer extends React.Component {
                 <div className='container animated slideInRight'>
                     <h1>Mapy</h1>
                     <div className='map_container'>
-
-
-                        <Map data={this.state.data}
-                             selectedMountainCallback={this.changeDescription}
+                        <Map data={this.state.mountains}
+                             selectedMountainCallback={this.selectMountain}
                         />
-                        <Description name={this.state.name}
-                                     range={this.state.range}
-                                     height={this.state.height}
-                                     description={this.state.description}/>
+                        <MountDescription mountain={this.state.selectedMountain} prompt="Wybierz górę"/>
                     </div>
                 </div>
             </div>
