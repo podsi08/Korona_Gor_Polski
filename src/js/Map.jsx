@@ -33,6 +33,7 @@ class Map extends Component {
             <MountIcon
             key={mountain.id}
             id={mountain.id}
+            name={mountain.name}
             lat={mountain.latitude}
             lng={mountain.longitude}
             active={this.state.activeMountainId === mountain.id}

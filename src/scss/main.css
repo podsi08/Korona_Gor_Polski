@@ -131,6 +131,10 @@ header {
         background-image: url("../images/peak-green.png"); }
     .map_container .map .mount_icon_gained_active {
       background-image: url("../images/peak-green.png"); }
+    .map_container .map .tooltip_hidden {
+      visibility: hidden; }
+    .map_container .map .tooltip_visible {
+      display: none; }
   .map_container .description {
     width: 80%;
     height: 40vh;
@@ -177,6 +181,22 @@ header {
     flex-wrap: wrap; }
     .map_container .map {
       width: 60%; }
+      .map_container .map .tooltip_visible {
+        display: block;
+        visibility: visible;
+        position: relative;
+        top: -70px;
+        left: -62px;
+        font-size: 14px;
+        background-color: black;
+        color: white;
+        height: 20px;
+        width: 125px;
+        padding: 3px;
+        border-radius: 5px;
+        text-align: center;
+        z-index: 10;
+        opacity: 0.85; }
     .map_container .description {
       width: 30%;
       height: 50vh;

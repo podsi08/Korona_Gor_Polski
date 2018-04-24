@@ -9,7 +9,7 @@ class TravelDescription extends React.Component {
         if (typeof this.props.travel !== 'undefined') {
             return(
                 <React.Fragment>
-                    <h3>{this.props.travel.date}</h3>
+                    <h3>Data zdobycia: {this.props.travel.date}</h3>
                     <span>{this.props.travel.note}</span>
                 </React.Fragment>
             )
@@ -26,7 +26,7 @@ class TravelDescription extends React.Component {
                 <div className='description'>
                     <h1>{this.props.mountain.name}</h1>
                     <h3>{this.props.mountain.chain}</h3>
-                    <h3>{this.props.mountain.height}</h3>
+                    <h3>{this.props.mountain.height} m n.p.m.</h3>
                     {this.renderNote()}
                 </div>
             )

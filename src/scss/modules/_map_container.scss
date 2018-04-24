@@ -38,6 +38,12 @@
 			@extend %mount_icon;
 			background-image: url("../images/peak-green.png");
 		}
+		.tooltip_hidden {
+			visibility: hidden;
+		}
+		.tooltip_visible {
+			display: none;
+		}
 	}
 	.description {
 		width: 80%;
@@ -102,6 +108,23 @@
 		flex-wrap: wrap;
 		.map {
 			width: 60%;
+			.tooltip_visible {
+				display: block;
+				visibility: visible;
+				position: relative;
+				top: -70px;
+				left: -62px;
+				font-size: 14px;
+				background-color: black;
+				color: white;
+				height: 20px;
+				width: 125px;
+				padding: 3px;
+				border-radius: 5px;
+				text-align: center;
+				z-index: 10;
+				opacity: 0.85;
+			}
 		}
 		.description {
 			width: 30%;
