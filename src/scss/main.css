@@ -102,7 +102,7 @@ header {
           border-left: 3rem solid #e3e6ec;
           left: 7rem; } }
 
-.map_container .map .mount_icon_inactive, .map_container .map .mount_icon_active, .map_container .map .mount_icon_gained {
+.map_container .map .mount_icon_inactive, .map_container .map .mount_icon_active, .map_container .map .mount_icon_gained, .map_container .map .mount_icon_gained_active {
   position: relative;
   left: -16px;
   top: -16px;
@@ -129,6 +129,8 @@ header {
       background-image: url("../images/peak-blue.png"); }
       .map_container .map .mount_icon_gained:hover {
         background-image: url("../images/peak-green.png"); }
+    .map_container .map .mount_icon_gained_active {
+      background-image: url("../images/peak-green.png"); }
   .map_container .description {
     width: 80%;
     height: 40vh;

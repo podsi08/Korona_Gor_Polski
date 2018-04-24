@@ -28,7 +28,7 @@ class Map extends Component {
         }
     };
 
-    iconsRender = () => {
+    renderIcons = () => {
         return this.props.data.map((mountain) =>
             <MountIcon
             key={mountain.id}
@@ -47,7 +47,7 @@ class Map extends Component {
                     defaultCenter={this.props.mapConfig.center}
                     defaultZoom={this.props.mapConfig.zoom}>
 
-                    {this.iconsRender()}
+                    {this.renderIcons()}
 
                 </GoogleMapReact>
             </div>

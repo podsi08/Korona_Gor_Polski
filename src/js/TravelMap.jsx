@@ -6,55 +6,49 @@ class TravelMap extends React.Component {
     constructor(props) {
         super(props);
 
-
         this.state = {
-            activeMountainId: -1
-
-        }
+            activeMountainName: ''
+        };
     }
 
     static defaultProps = {
-        center: {lat: 50.00, lng: 19.50},
-        zoom: 7
+        mapConfig: {
+            center: {lat: 50.00, lng: 19.50},
+            zoom: 7
+        }
     };
 
-    changeActiveMountain = (id) => {
+    renderIcons = () => {
+        return this.props.data.map((mountain) =>
+            <TravelMountIcon
+                key={mountain.id}
+                name={mountain.name}
+                lat={mountain.latitude}
+                lng={mountain.longitude}
+                active={this.state.activeMountainName === mountain.name}
+                gained={this.props.gainedMountains.indexOf(mountain.name) !== -1}
+                onMountainClicked={this.handleMountainClick}
+            />)
+    };
+
+    handleMountainClick = (name) => {
         this.setState({
-            activeMountainId: id
-        })
+            activeMountainName: name
+        });
+        if (typeof this.props.selectedMountainCallback === 'function') {
+            this.props.selectedMountainCallback(name);
+        }
     };
 
     render() {
-        let iconsRender = () => {
-            if(this.props.data === false){
-                return <p>...</p>
-            } else {
-                return (
-
-                    this.props.data.map((elem) => {
-                        return (<TravelMountIcon
-                            key={elem.id}
-                            name={elem.name}
-                            lat={elem.lat}
-                            lng={elem.lng}
-                            clickFunction1={this.props.selectedMountainCallback}
-                            clickFunction2={this.changeActiveMountain}
-                            gained={this.props.gainedMountains.indexOf(elem.name) !== -1}
-                        />);
-                    })
-
-                )
-            }
-        };
-
         return (
             <div className='map'>
                 <GoogleMapReact
                     bootstrapURLKeys={{ key: ['AIzaSyDiPV4G6a1Nvo4VQcXBXh2-vsn_WcjE074'] }}
-                    defaultCenter={this.props.center}
-                    defaultZoom={this.props.zoom}>
+                    defaultCenter={this.props.mapConfig.center}
+                    defaultZoom={this.props.mapConfig.zoom}>
 
-                    {iconsRender()}
+                    {this.renderIcons()}
 
                 </GoogleMapReact>
             </div>

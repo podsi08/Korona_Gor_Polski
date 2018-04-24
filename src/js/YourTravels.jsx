@@ -2,94 +2,97 @@ import React from 'react';
 import Form from "./Form";
 import TravelMap from './TravelMap';
 import TravelDescription from './TravelDescription';
+import Travel from './model/Travel';
+import Mountain from './model/Mountain';
 
 class YourTravels extends React.Component {
     constructor(props){
         super(props);
 
         this.state = {
-            storage: null,
-            data: [],
-            name: 'Wybierz górę',
-            range: '',
-            height: '',
-            date: '',
-            note: '',
+            selectedMountain: null,
+            mountains: [],
+            travels: [],
             gainedMountains: []
         }
     }
 
+    getDataFromLocalStorage = () => {
+        if(JSON.parse(localStorage.getItem('korona_gor')) === null) {
+            return []
+        } else {
+            console.log(JSON.parse(localStorage.getItem('korona_gor')))
+            return JSON.parse(localStorage.getItem('korona_gor'))
+        }
+    };
+
     componentDidMount(){
+        //pobieram dane z serwera
         fetch('http://localhost:3001/mountains').then(response => {
             console.log(response);
             return response.json()
         }).then(data => {
             this.setState({
-                data: data
+                //z pobranych danych tworzę obiekty Mountain wg modelu w ./model/Mountain.js
+                mountains: data.map(mountain => new Mountain(
+                    mountain.id,
+                    mountain.name,
+                    mountain.height,
+                    mountain.lng,
+                    mountain.lat,
+                    mountain.range,
+                    mountain.description
+                ))
             });
-            console.log(data);
-        }).catch(err => {
-            console.log(err)
         });
 
+        //pobieram dane z local storage
+        let storageTravels = this.getDataFromLocalStorage();
+
+        //z danych z local storage tworzę obiekty Travel wg modelu w ./model/Travel.js oraz tablicę z nazwami zdobytych gór
         this.setState({
-            storage: JSON.parse(localStorage.getItem('korona_gor'))
-        }, () => {
-            this.setState({
-                gainedMountains: this.state.storage === null ? [] : this.state.storage.map(elem => elem.name)
-            })
+            travels: storageTravels.map(travel => new Travel(
+                travel.name,
+                travel.date,
+                travel.note
+            )),
+            gainedMountains: storageTravels.map(travel => travel.name)
         })
     }
 
-    changeTravelDescription = (name) => {
-        let clickedObjectTravelData = this.state.storage.filter((elem) => {
-            return name === elem.name;
+    //funkcja wykona się po kliknięciu w ikonę na mapie, zmienia się selectedMountain przekazywane do Description
+    // w props jako mountain
+    selectMountain = (name) => {
+        let clickedMountain = this.state.mountains.find(mount => {
+            return name === mount.name;
         });
 
-        let clickedObjectData = this.state.data.filter((elem) => {
-            return name === elem.name;
-        });
-
-        let mountain = {
-            name: clickedObjectData[0].name,
-            range: clickedObjectData[0].range,
-            height: clickedObjectData[0].height + 'm n.p.m.',
-        };
-
-        if (clickedObjectTravelData.length === 0) {
-            mountain.date = "";
-            mountain.note = "Góra jeszcze niezdobyta... Nie patrz już w ten monitor i zrób coś z tym!";
-        } else {
-            mountain.date = `Data zdobycia: ${clickedObjectTravelData[0].date}`;
-            mountain.note = clickedObjectTravelData[0].note;
-
+        if(typeof clickedMountain !== 'undefined'){
+            this.setState({
+                selectedMountain: clickedMountain
+            });
         }
-
-        this.setState({
-            name: mountain.name,
-            range: mountain.range,
-            height: mountain.height,
-            date: mountain.date,
-            note: mountain.note
-        })
     };
 
     render(){
+        //po wybraniu góry travel zwróci obiekt opisujący wycieczkę lub gdy góra jeszcze niezdobyta 'undefined'
+        let travel = this.state.selectedMountain !== null &&
+                    this.state.travels.find(travel => travel.mountain === this.state.selectedMountain.name);
+
         return(
             <div className='container animated slideInRight'>
                 <h1>Twoje podróże</h1>
                 <div className='map_container'>
 
-                    <TravelMap data={this.state.data}
-                               gainedMountains={this.state.gainedMountains}
-                         selectedMountainCallback={this.changeTravelDescription}
+                    <TravelMap data={this.state.mountains}
+                        selectedMountainCallback={this.selectMountain}
+                        gainedMountains={this.state.gainedMountains}
                     />
-                    <TravelDescription name={this.state.name}
-                                     range={this.state.range}
-                                     height={this.state.height}
-                                     date={this.state.date}
-                                     note={this.state.note}/>
-                    <Form data={this.state.data} gainedMountains={this.state.gainedMountains}/>
+                    <TravelDescription mountain={this.state.selectedMountain}
+                                       travel={travel}
+                                       prompt="Wybierz górę"
+                                       motivationMessage="Góra jeszcze niezdobyta... Przestań patrzeć w ten monitor i zrób coś z tym"/>
+                    <Form data={this.state.mountains} gainedMountains={this.state.gainedMountains}/>
                 </div>
 
             </div>
