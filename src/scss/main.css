@@ -136,7 +136,7 @@ header {
     .map_container .map .tooltip_visible {
       display: none; }
   .map_container .description {
-    width: 80%;
+    width: 100%;
     height: 40vh;
     background-image: url("../images/vintage-concrete.png");
     background-position: center;
@@ -152,12 +152,34 @@ header {
       margin-bottom: 0.4rem;
       font-size: 0.8rem; }
     .map_container .description span {
-      font-size: 0.8rem;
+      font-size: 0.9rem;
       font-family: "Indie Flower", cursive; }
+    .map_container .description .note_btn {
+      font-size: 0.8rem;
+      height: 1.2rem;
+      width: 6rem;
+      border: 1px black solid;
+      margin-top: 0.6rem;
+      text-align: center;
+      display: inline-block;
+      cursor: pointer;
+      margin-right: 1rem; }
   .map_container .form {
-    width: 80%; }
+    width: 100%; }
 
 @media only screen and (min-width: 620px) and (max-width: 1200px) {
+  .map_container .description h1 {
+    font-size: 1.5rem; }
+  .map_container .description h3 {
+    font-size: 0.9rem; }
+  .map_container .description span {
+    font-size: 1.1rem; }
+  .map_container .description .note_btn {
+    font-size: 0.9rem;
+    height: 1.3rem;
+    width: 7rem; } }
+
+@media only screen and (min-width: 800px) and (max-width: 1200px) {
   .map_container {
     justify-content: space-between; }
     .map_container .map {
@@ -165,12 +187,6 @@ header {
     .map_container .description {
       width: 38%;
       height: 50vh; }
-      .map_container .description h1 {
-        font-size: 1.5rem; }
-      .map_container .description h3 {
-        font-size: 0.9rem; }
-      .map_container .description span {
-        font-size: 1rem; }
     .map_container .form {
       width: 50%; } }
 
@@ -207,51 +223,89 @@ header {
         font-size: 1.1rem; }
       .map_container .description span {
         font-size: 1.1rem; }
+      .map_container .description .note_btn {
+        font-size: 1rem;
+        height: 1.4rem;
+        width: 8rem; }
     .map_container .form {
       width: 40%; } }
 
 p {
   text-indent: 30px;
   text-align: justify;
-  font-size: 1.1rem; }
+  font-size: 0.8rem; }
+
+@media only screen and (min-width: 481px) {
+  p {
+    font-size: 1rem; } }
+
+form input, form .select {
+  height: 1.8rem;
+  width: 55%;
+  margin-bottom: 0.5rem;
+  line-height: 1.8rem;
+  font-size: 0.8rem; }
+  form input:focus, form .select:focus {
+    outline: 0; }
 
 form input {
-  height: 25px;
-  margin-top: 7px;
-  margin-bottom: 7px;
-  width: 50%; }
+  border-radius: 5px;
+  padding-left: 10px;
+  font-family: "Lato", sans-serif; }
 
 form input[type='submit'] {
   background-color: #e3e6ec;
   color: #0f498c;
-  font-size: 0.8rem;
-  width: 35%; }
+  font-size: 0.9rem;
+  width: 40%;
+  padding: 0;
+  cursor: pointer;
+  border-radius: 6px;
+  border-style: solid;
+  margin-top: 0.5rem;
+  text-transform: uppercase; }
   form input[type='submit']:hover {
-    color: #82941b;
     background-color: white; }
 
 form textarea {
   width: 80%;
-  height: 100px;
-  margin-top: 7px; }
+  height: 5.5rem;
+  font-family: "Lato", sans-serif;
+  padding-left: 10px;
+  font-size: 0.8rem;
+  border-radius: 5px; }
+  form textarea:focus {
+    outline: 0; }
 
 form .error_message {
-  color: #ff1018;
+  color: rgba(240, 55, 30, 0.84);
+  font-weight: bold; }
+
+form .info_message {
+  color: black;
   font-weight: bold; }
 
 form h3 {
-  font-size: 0.8rem; }
+  font-size: 0.9rem;
+  line-height: 1.8rem; }
 
 @media only screen and (min-width: 481px) and (max-width: 1200px) {
   form h3 {
-    font-size: 0.9rem; } }
+    font-size: 1rem;
+    line-height: 2rem; }
+  form input, form .select {
+    width: 80%; }
+  form input[type='submit'] {
+    width: 55%; } }
 
 @media only screen and (min-width: 1201px) {
   form h3 {
-    font-size: 1.2rem; }
+    font-size: 1.1rem;
+    line-height: 2.2rem; }
+  form input, form .select {
+    width: 80%; }
   form input[type='submit'] {
-    height: 35px;
-    font-size: 1rem; } }
+    width: 55%; } }
 
 * {
   margin: 0;
@@ -268,12 +322,12 @@ form h3 {
       * body .container h1 {
         font-family: "Indie Flower", cursive;
         margin-bottom: 10px;
-        font-size: 1.4rem; }
+        font-size: 1.2rem; }
 
 @media only screen and (min-width: 481px) and (max-width: 1200px) {
   body .container h1 {
-    font-size: 1.7rem; } }
+    font-size: 1.5rem; } }
 
 @media only screen and (min-width: 1201px) {
   body .container h1 {
-    font-size: 1.9rem; } }
+    font-size: 1.7rem; } }

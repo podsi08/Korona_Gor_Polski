@@ -74,6 +74,10 @@ class YourTravels extends React.Component {
         }
     };
 
+    deleteNote = () => {
+        //trzeba przefiltrować dane z local storage, stworzyć nową tablicę i zapisać ją do local storage (nadpisze to, co było wcześniej)
+    };
+
     render(){
         //po wybraniu góry travel zwróci obiekt opisujący wycieczkę lub gdy góra jeszcze niezdobyta 'undefined'
         let travel = this.state.selectedMountain !== null &&
@@ -91,7 +95,8 @@ class YourTravels extends React.Component {
                     <TravelDescription mountain={this.state.selectedMountain}
                                        travel={travel}
                                        prompt="Wybierz górę"
-                                       motivationMessage="Góra jeszcze niezdobyta... Przestań patrzeć w ten monitor i zrób coś z tym"/>
+                                       motivationMessage="Góra jeszcze niezdobyta... Przestań patrzeć w ten monitor i zrób coś z tym"
+                                       deleteNoteClick={this.deleteNote}/>
                     <Form data={this.state.mountains} gainedMountains={this.state.gainedMountains}/>
                 </div>
 

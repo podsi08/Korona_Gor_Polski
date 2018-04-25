@@ -1,6 +1,12 @@
 import React from "react";
 
 class TravelDescription extends React.Component {
+    handleClick = () => {
+        if(typeof this.props.deleteNoteClick === 'function') {
+            this.props.deleteNoteClick();
+        }
+    };
+
     //jeżeli istnieje notatka o zdobyciu wybranej góry to ją wyświetl, jeżeli nie, wyświetl
     //motywującą wiadomość
 
@@ -11,6 +17,10 @@ class TravelDescription extends React.Component {
                 <React.Fragment>
                     <h3>Data zdobycia: {this.props.travel.date}</h3>
                     <span>{this.props.travel.note}</span>
+                    <div>
+                        <div className='note_btn'>Edytuj notatkę</div>
+                        <div onClick={this.handleClick} className='note_btn'>Usuń notatkę</div>
+                    </div>
                 </React.Fragment>
             )
         } else {

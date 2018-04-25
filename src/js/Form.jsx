@@ -10,7 +10,7 @@ class Form extends React.Component {
             selectedName: '',
             date: '',
             note: '',
-            errorMessage: [],
+            formMessages: [],
             error: false
         }
     }
@@ -28,22 +28,22 @@ class Form extends React.Component {
     checkData = (e) => {
         e.preventDefault();
 
-        // if(this.state.name.length === 0){
-        //     this.setState({
-        //         errorMessage: [...this.state.errorMessage, 'Musisz wybrać górę'],
-        //         error: true
-        //     })
-        // }
+        let error = false;
+        let messages = [];
+
+        if(this.state.selectedName === ""){
+            error = true;
+            messages.push(<h3 className='error_message'>Musisz wybrać górę</h3>)
+        }
 
         if(this.state.date.length === 0){
-            this.setState({
-                errorMessage: [...this.state.errorMessage, 'Musisz wybrać datę'],
-                error: true
-            })
+            error = true;
+            messages.push(<h3 className='error_message'>Musisz wybrać datę</h3>)
         }
 
         //jeżeli nie ma błędu, tworzony jest nowy obiekt newTravel
-        if (!this.state.error){
+        if (!error){
+            messages.push(<h3 className='info_message'>Twoja wycieczka została dodana</h3>)
 
             let newTravel = {
                 name: this.state.selectedName.value,
@@ -72,6 +72,12 @@ class Form extends React.Component {
 
             });
         }
+
+        this.setState({
+            formMessages: messages,
+            error: error
+        })
+
     };
 
     handleInput = (e) => {
@@ -81,7 +87,6 @@ class Form extends React.Component {
     };
 
     handleSelectChange = (selectedOption) => {
-
         this.setState({
             selectedName: selectedOption
         })
@@ -91,10 +96,10 @@ class Form extends React.Component {
         //przygotowanie danych do select (filtruję tylko góry, które nie zostały zdobyte)
         const mountainsToGain = [];
 
-        this.props.data.filter((elem) => {
-            return this.props.gainedMountains.indexOf(elem.name) === -1
-        }).forEach((elem) => {
-            mountainsToGain.push({value: elem.name, label: elem.name})
+        this.props.data.filter((mount) => {
+            return this.props.gainedMountains.indexOf(mount.name) === -1
+        }).forEach((mount) => {
+            mountainsToGain.push({value: mount.name, label: mount.name})
         });
 
         return(
@@ -106,22 +111,22 @@ class Form extends React.Component {
                             value={this.state.selectedName}
                             options={mountainsToGain}
                             onChange={this.handleSelectChange}
+                            className='select'
                             />
+
                     <h3>Data zdobycia:</h3>
                     <input type='date'
                            id='date'
                            value={this.state.date}
                            onChange={this.handleInput}/>
+
                     <h3>Opisz swoją wędrówkę:</h3>
                     <textarea id='note'
                            value={this.state.note}
                            onChange={this.handleInput}/><br/>
-                    <div className='error_message'>
-                        {
-                            this.state.errorMessage.map((msg) => {
-                                return <div>{msg}</div>
-                            })
-                        }
+
+                    <div>
+                        {this.state.formMessages}
                     </div>
                     <input type='submit' value='Dodaj podróż' onClick={this.checkData}/>
                 </form>

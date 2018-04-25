@@ -1,38 +1,70 @@
 form {
+	input, .select {
+		height: 1.8rem;
+		width: 55%;
+		margin-bottom: 0.5rem;
+		line-height: 1.8rem;
+		font-size: 0.8rem;
+		&:focus{
+			outline: 0;
+		}
+	}
 	input {
-		height: 25px;
-		margin-top: 7px;
-		margin-bottom: 7px;
-		width: 50%;
+		border-radius: 5px;
+		padding-left: 10px;
+		font-family: $mainFont;
 	}
 	input[type='submit']{
 		background-color: $menuColor;
 		color: darken($backgroundColor, 30%);
-		font-size: 0.8rem;
-		width: 35%;
+		font-size: 0.9rem;
+		width: 40%;
+		padding: 0;
+		cursor: pointer;
+		border-radius: 6px;
+		border-style: solid;
+		margin-top: 0.5rem;
+		text-transform: uppercase;
 		&:hover {
-			color: darken($activeColor, 10%);
 			background-color: lighten($menuColor, 20%);
 		}
 	}
 	textarea {
 		width: 80%;
-		height: 100px;
-		margin-top: 7px;
+		height: 5.5rem;
+		font-family: $mainFont;
+		padding-left: 10px;
+		font-size: 0.8rem;
+		border-radius: 5px;
+		&:focus{
+			outline: 0;
+		}
 	}
 	.error_message {
 		color: $errorColor;
 		font-weight: bold;
 	}
+	.info_message {
+		color: black;
+		font-weight: bold;
+	}
 	h3 {
-		font-size: 0.8rem;
+		font-size: 0.9rem;
+		line-height: 1.8rem;
 	}
 }
 
 @media only screen and (min-width: 481px) and (max-width: 1200px) {
 	form {
 		h3 {
-			font-size: 0.9rem;
+			font-size: 1rem;
+			line-height: 2rem;
+		}
+		input, .select {
+			width: 80%;
+		}
+		input[type='submit'] {
+			width: 55%;
 		}
 	}
 
@@ -41,11 +73,14 @@ form {
 @media only screen and (min-width: 1201px){
 	form {
 		h3 {
-			font-size: 1.2rem;
+			font-size: 1.1rem;
+			line-height: 2.2rem;
 		}
-		input[type='submit']{
-			height: 35px;
-			font-size: 1rem;
+		input, .select {
+			width: 80%;
+		}
+		input[type='submit'] {
+			width: 55%;
 		}
 	}
 }
