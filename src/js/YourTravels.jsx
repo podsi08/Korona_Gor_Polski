@@ -17,17 +17,23 @@ class YourTravels extends React.Component {
         }
     }
 
+    //funkcja pobierająca dane z local storage
     getDataFromLocalStorage = () => {
-        if(JSON.parse(localStorage.getItem('korona_gor')) === null) {
+        const storageData = JSON.parse(localStorage.getItem('korona_gor'));
+
+        if(storageData === null) {
             return []
         } else {
-            console.log(JSON.parse(localStorage.getItem('korona_gor')))
-            return JSON.parse(localStorage.getItem('korona_gor'))
+            return storageData
         }
     };
 
+    //funkcja zapisująca do local storage
+    saveToLocalStorage = (data) => {
+        localStorage.setItem('korona_gor', JSON.stringify(data));
+    };
+
     componentDidMount(){
-        console.log('Your Travel DidMount');
         //pobieram dane z serwera
         fetch('http://localhost:3001/mountains').then(response => {
             console.log(response);
@@ -57,6 +63,7 @@ class YourTravels extends React.Component {
         })
     }
 
+
     //funkcja wykona się po kliknięciu w ikonę na mapie, zmienia się selectedMountain przekazywane do Description
     // w props jako mountain
     selectMountain = (name) => {
@@ -71,11 +78,6 @@ class YourTravels extends React.Component {
         }
     };
 
-    //funkcja zapisująca do local storage
-    saveToLocalStorage = (data) => {
-        localStorage.setItem('korona_gor', JSON.stringify(data));
-    };
-
     //funkcja usuwająca notatkę
     deleteNote = (name) => {
         //filtruję obiekty z local storage i tworzę nową tablicę bez usuniętego obiektu
@@ -86,13 +88,51 @@ class YourTravels extends React.Component {
         //nadpisuję local storage
         this.saveToLocalStorage(newStorageData);
 
-        //ustalam nowy stan -> po usunięciu notatki opis wycieczki zmieni się od razu na wiadomość motywacyjną
+        //ustalam nowy stan -> po usunięciu notatki opis wycieczki zmieni się od razu na wiadomość motywacyjną i zniknie
+        //ikona zdobytej góry
+        this.setState({
+            travels: newStorageData,
+            gainedMountains: newStorageData.map(travel => travel.mountain)
+        })
+    };
+
+
+    //funkcja edytująca notatkę
+    editNote = (name, date, note) => {
+        //filtruję obiekty z local storage i tworzę nową tablicę bez obiektu, który został zedytowany
+        let newStorageData = this.state.travels.filter((travel) => {
+            return travel.mountain !== name
+        });
+
+        let newTravel = new Travel (
+            name,
+            date, //zmienić edycję daty, tak żeby pojawiał się kalendarz
+            note
+        );
+
+        //do niezmienionych opisów dodaję nowy, zedytowany opis
+        newStorageData.push(newTravel);
+
+        //nadpisuję local storage
+        this.saveToLocalStorage(newStorageData);
+
         this.setState({
             travels: newStorageData
         })
-
-
     };
+
+
+    //funkcja wywoływana jako callback po zatwierdzeniu formularza z poprawnymi danymi -> zmienia się state,
+    //na nowo zostaną wyrenderowane opis i ikona góry, którą dodaliśmy właśnie do naszych podróży (zmieniło się gainedMountains
+    //przekazywane jako props do TravelMap i travels przekazywane do TravelDescription)
+    dataChanged = () => {
+        let storageTravels = this.getDataFromLocalStorage();
+        this.setState({
+            gainedMountains: storageTravels.map(travel => travel.mountain),
+            travels: storageTravels
+        })
+    };
+
 
     render(){
         //po wybraniu góry travel zwróci obiekt opisujący wycieczkę lub gdy góra jeszcze niezdobyta 'undefined'
@@ -112,11 +152,14 @@ class YourTravels extends React.Component {
                                        travel={travel}
                                        prompt="Wybierz górę"
                                        motivationMessage="Góra jeszcze niezdobyta... Przestań patrzeć w ten monitor i zrób coś z tym"
-                                       deleteNoteClick={this.deleteNote}/>
+                                       deleteNoteClick={this.deleteNote}
+                                       editNoteClick={this.editNote}/>
                     <Form mountains={this.state.mountains}
                           travels={this.state.travels}
                           gainedMountains={this.state.gainedMountains}
                           saveToLocalStorage={this.saveToLocalStorage}
+                          getDataFromLocalStorage={this.getDataFromLocalStorage}
+                          onDataChanged={this.dataChanged}
                     />
                 </div>
 

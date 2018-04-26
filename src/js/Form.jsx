@@ -16,13 +16,6 @@ class Form extends React.Component {
         }
     }
 
-    //funkcja pobierająca dane z local storage
-    getDataFromLocalStorage = () => {
-        return JSON.parse(localStorage.getItem('korona_gor'))
-    };
-
-
-
     checkData = (e) => {
         e.preventDefault();
 
@@ -41,8 +34,6 @@ class Form extends React.Component {
 
         //jeżeli nie ma błędu, tworzony jest nowy obiekt newTravel wg modelu w ./model/Travel.js
         if (!error){
-            messages.push(<h3 className='info_message'>Twoja wycieczka została dodana</h3>);
-
             let newTravel = new Travel (
                 this.state.selectedName.value,
                 this.state.date,
@@ -50,16 +41,22 @@ class Form extends React.Component {
             );
 
             //wczytuję aktualne dane z local storage
-            let storageData = this.getDataFromLocalStorage();
+            let storageData = this.props.getDataFromLocalStorage();
 
             //jeżeli nic nie ma w local storage to tworzę nową tablicę z obiektem, jeżeli już istnieje tablica
             //z danymi, dodaje na jej koniec nowy obiekt
-
             if(storageData !== null){
                 storageData.push(newTravel);
                 this.props.saveToLocalStorage(storageData);
             } else {
                 this.props.saveToLocalStorage([newTravel]);
+            }
+
+            messages.push(<h3 className='info_message'>Twoja wycieczka została dodana</h3>);
+
+            //funkcja onDataChange() przekazywana jest do props przy renderowaniu YourTravels
+            if (typeof this.props.onDataChanged === 'function') {
+                this.props.onDataChanged();
             }
 
             //po zatwierdzeniu czyszczę okna formularza

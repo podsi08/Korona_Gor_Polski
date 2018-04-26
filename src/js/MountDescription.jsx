@@ -9,13 +9,7 @@ class MountDescription extends React.Component {
         }
     }
 
-    // static getDerivedStateFromProps(nextProps, prevState){
-    //     console.log('działa');
-    //     return(
-    //         {class: 'animated fadeIn'}
-    //     )
-    // }
-
+    //to do zmiany na getDerivedStateFromProps lub inny cykl życia
     componentWillReceiveProps(){
         this.setState({
             class: 'animated fadeIn'
@@ -42,6 +36,13 @@ class MountDescription extends React.Component {
     //         //     }, 500)
     //         // })
     //     }
+    // }
+
+    // static getDerivedStateFromProps(nextProps, prevState){
+    //     console.log('działa');
+    //     return(
+    //         {class: 'animated fadeIn'}
+    //     )
     // }
 
     render(){

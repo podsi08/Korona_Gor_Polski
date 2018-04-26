@@ -1,11 +1,47 @@
 import React from "react";
 
 class TravelDescription extends React.Component {
-    handleClick = () => {
+    constructor(props){
+        super(props);
+
+        //tworzę referencje, które zostaną wykorzystane przy edycji notatek z podróży (przekazuję this.noteRef.current.innerText
+        //jako parametr do funkcji będącej callbackiem kliknięcia w przycisk "zapisz", wartość ta jest w funkcji editNote w
+        // YourTravel zapisywana do local storage
+        this.dateRef = React.createRef();
+        this.noteRef = React.createRef();
+
+        this.state = {
+            contenteditable: false,
+            buttonText: 'Edytuj notatkę'
+        }
+    }
+
+    handleClickDelete = () => {
         if(typeof this.props.deleteNoteClick === 'function') {
             this.props.deleteNoteClick(this.props.mountain.name);
         }
     };
+
+    handleClickEdit = () => {
+        if(!this.state.contenteditable) {
+            this.setState({
+                contenteditable: true,
+                buttonText: 'Zapisz'
+            })
+
+        } else {
+
+            if(typeof this.props.editNoteClick === 'function') {
+                this.props.editNoteClick(this.props.mountain.name, this.dateRef.current.innerText, this.noteRef.current.innerText);
+            }
+
+            this.setState({
+                contenteditable: false,
+                buttonText: 'Edytuj notatkę'
+            })
+        }
+    };
+
 
     //jeżeli istnieje notatka o zdobyciu wybranej góry to ją wyświetl, jeżeli nie, wyświetl
     //motywującą wiadomość
@@ -15,11 +51,11 @@ class TravelDescription extends React.Component {
         if (typeof this.props.travel !== 'undefined') {
             return(
                 <React.Fragment>
-                    <h3>Data zdobycia: {this.props.travel.date}</h3>
-                    <span>{this.props.travel.note}</span>
+                    <h3>Data zdobycia: <span ref={this.dateRef} contentEditable={this.state.contenteditable}>{this.props.travel.date}</span></h3>
+                    <div ref={this.noteRef} contentEditable={this.state.contenteditable} className='note'>{this.props.travel.note}</div>
                     <div>
-                        <div className='note_btn'>Edytuj notatkę</div>
-                        <div onClick={this.handleClick} className='note_btn'>Usuń podróż</div>
+                        <div onClick={this.handleClickEdit} className='note_btn'>{this.state.buttonText}</div>
+                        <div onClick={this.handleClickDelete} className='note_btn'>Usuń podróż</div>
                     </div>
                 </React.Fragment>
             )
