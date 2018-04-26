@@ -3,7 +3,7 @@ import React from "react";
 class TravelDescription extends React.Component {
     handleClick = () => {
         if(typeof this.props.deleteNoteClick === 'function') {
-            this.props.deleteNoteClick();
+            this.props.deleteNoteClick(this.props.mountain.name);
         }
     };
 
@@ -19,7 +19,7 @@ class TravelDescription extends React.Component {
                     <span>{this.props.travel.note}</span>
                     <div>
                         <div className='note_btn'>Edytuj notatkę</div>
-                        <div onClick={this.handleClick} className='note_btn'>Usuń notatkę</div>
+                        <div onClick={this.handleClick} className='note_btn'>Usuń podróż</div>
                     </div>
                 </React.Fragment>
             )

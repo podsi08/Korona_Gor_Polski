@@ -27,6 +27,7 @@ class YourTravels extends React.Component {
     };
 
     componentDidMount(){
+        console.log('Your Travel DidMount');
         //pobieram dane z serwera
         fetch('http://localhost:3001/mountains').then(response => {
             console.log(response);
@@ -51,12 +52,8 @@ class YourTravels extends React.Component {
 
         //z danych z local storage tworzę obiekty Travel wg modelu w ./model/Travel.js oraz tablicę z nazwami zdobytych gór
         this.setState({
-            travels: storageTravels.map(travel => new Travel(
-                travel.name,
-                travel.date,
-                travel.note
-            )),
-            gainedMountains: storageTravels.map(travel => travel.name)
+            travels: storageTravels,
+            gainedMountains: storageTravels.map(travel => travel.mountain)
         })
     }
 
@@ -74,8 +71,27 @@ class YourTravels extends React.Component {
         }
     };
 
-    deleteNote = () => {
-        //trzeba przefiltrować dane z local storage, stworzyć nową tablicę i zapisać ją do local storage (nadpisze to, co było wcześniej)
+    //funkcja zapisująca do local storage
+    saveToLocalStorage = (data) => {
+        localStorage.setItem('korona_gor', JSON.stringify(data));
+    };
+
+    //funkcja usuwająca notatkę
+    deleteNote = (name) => {
+        //filtruję obiekty z local storage i tworzę nową tablicę bez usuniętego obiektu
+        let newStorageData = this.state.travels.filter((travel) => {
+            return travel.mountain !== name
+        });
+
+        //nadpisuję local storage
+        this.saveToLocalStorage(newStorageData);
+
+        //ustalam nowy stan -> po usunięciu notatki opis wycieczki zmieni się od razu na wiadomość motywacyjną
+        this.setState({
+            travels: newStorageData
+        })
+
+
     };
 
     render(){
@@ -97,7 +113,11 @@ class YourTravels extends React.Component {
                                        prompt="Wybierz górę"
                                        motivationMessage="Góra jeszcze niezdobyta... Przestań patrzeć w ten monitor i zrób coś z tym"
                                        deleteNoteClick={this.deleteNote}/>
-                    <Form data={this.state.mountains} gainedMountains={this.state.gainedMountains}/>
+                    <Form mountains={this.state.mountains}
+                          travels={this.state.travels}
+                          gainedMountains={this.state.gainedMountains}
+                          saveToLocalStorage={this.saveToLocalStorage}
+                    />
                 </div>
 
             </div>

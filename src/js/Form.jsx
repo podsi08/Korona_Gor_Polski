@@ -1,5 +1,6 @@
 import React from 'react';
 import Select from 'react-select';
+import Travel from './model/Travel';
 
 class Form extends React.Component {
     constructor(props){
@@ -20,10 +21,7 @@ class Form extends React.Component {
         return JSON.parse(localStorage.getItem('korona_gor'))
     };
 
-    //funkcja zapisująca do local storage
-    saveToLocalStorage = (data) => {
-        localStorage.setItem('korona_gor', JSON.stringify(data));
-    };
+
 
     checkData = (e) => {
         e.preventDefault();
@@ -41,27 +39,27 @@ class Form extends React.Component {
             messages.push(<h3 className='error_message'>Musisz wybrać datę</h3>)
         }
 
-        //jeżeli nie ma błędu, tworzony jest nowy obiekt newTravel
+        //jeżeli nie ma błędu, tworzony jest nowy obiekt newTravel wg modelu w ./model/Travel.js
         if (!error){
-            messages.push(<h3 className='info_message'>Twoja wycieczka została dodana</h3>)
+            messages.push(<h3 className='info_message'>Twoja wycieczka została dodana</h3>);
 
-            let newTravel = {
-                name: this.state.selectedName.value,
-                date: this.state.date,
-                note: this.state.note
-            };
+            let newTravel = new Travel (
+                this.state.selectedName.value,
+                this.state.date,
+                this.state.note
+            );
 
             //wczytuję aktualne dane z local storage
-            let storage = this.getDataFromLocalStorage();
+            let storageData = this.getDataFromLocalStorage();
 
             //jeżeli nic nie ma w local storage to tworzę nową tablicę z obiektem, jeżeli już istnieje tablica
             //z danymi, dodaje na jej koniec nowy obiekt
 
-            if(storage !== null){
-                storage.push(newTravel);
-                this.saveToLocalStorage(storage);
+            if(storageData !== null){
+                storageData.push(newTravel);
+                this.props.saveToLocalStorage(storageData);
             } else {
-                this.saveToLocalStorage([newTravel]);
+                this.props.saveToLocalStorage([newTravel]);
             }
 
             //po zatwierdzeniu czyszczę okna formularza
@@ -69,7 +67,6 @@ class Form extends React.Component {
                 selectedName: '',
                 date: '',
                 note: ''
-
             });
         }
 
@@ -96,7 +93,7 @@ class Form extends React.Component {
         //przygotowanie danych do select (filtruję tylko góry, które nie zostały zdobyte)
         const mountainsToGain = [];
 
-        this.props.data.filter((mount) => {
+        this.props.mountains.filter((mount) => {
             return this.props.gainedMountains.indexOf(mount.name) === -1
         }).forEach((mount) => {
             mountainsToGain.push({value: mount.name, label: mount.name})
