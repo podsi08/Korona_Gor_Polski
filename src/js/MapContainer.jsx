@@ -2,6 +2,7 @@ import React from 'react';
 import Map from './Map.jsx';
 import MountDescription from './MountDescription';
 import Mountain from './model/Mountain.js';
+import SearchMount from './SearchMount';
 
 class MapContainer extends React.Component {
     constructor(props){
@@ -49,11 +50,22 @@ class MapContainer extends React.Component {
         }
     };
 
+    newSearching = (mount) => {
+        let searchedMountain = this.state.mountains.find(mountain => {
+            return mount === mountain.name
+        });
+
+        this.setState({
+            selectedMountain: searchedMountain
+        })
+    };
+
     render(){
         return(
             <div>
                 <div className='container animated slideInRight'>
                     <h1>Mapy</h1>
+                    <SearchMount mountains={this.state.mountains} newSearching={this.newSearching}/>
                     <div className='map_container'>
                         <Map data={this.state.mountains}
                              selectedMountainCallback={this.selectMountain}
