@@ -36,8 +36,8 @@ class MapContainer extends React.Component {
         });
     }
 
-    //funkcja wykona się po kliknięciu w ikonę na mapie, zmienia się selectedMountain przekazywane do Description
-    // w props jako mountain
+    //funkcja wykona się po kliknięciu w ikonę na mapie, zmienia się selectedMountain przekazywane w props
+    // do Description i Map
     selectMountain = (id) => {
         let clickedMountain = this.state.mountains.find(mount => {
             return id === mount.id;
@@ -50,14 +50,17 @@ class MapContainer extends React.Component {
         }
     };
 
+    //funkcja wykona się po wyszukaniu nowej góry przez komponent SearchMount, zmienia się selectedMountain przekazywane
+    //w props do Description i Map
     newSearching = (mount) => {
-        let searchedMountain = this.state.mountains.find(mountain => {
-            return mount === mountain.name
-        });
-
-        this.setState({
-            selectedMountain: searchedMountain
-        })
+        if (typeof mount !== 'undefined') {
+            let searchedMountain = this.state.mountains.find(mountain => {
+                return mount === mountain.name
+            });
+            this.setState({
+                selectedMountain: searchedMountain
+            });
+        }
     };
 
     render(){
@@ -69,6 +72,7 @@ class MapContainer extends React.Component {
                     <div className='map_container'>
                         <Map data={this.state.mountains}
                              selectedMountainCallback={this.selectMountain}
+                             selectedMountain={this.state.selectedMountain}
                         />
                         <MountDescription mountain={this.state.selectedMountain} prompt="Wybierz górę"/>
                     </div>

@@ -1,6 +1,7 @@
 import React from 'react';
 import Select from 'react-select';
 import Travel from './model/Travel';
+import polishAlphabetSort from './utils';
 
 class Form extends React.Component {
     constructor(props){
@@ -86,45 +87,22 @@ class Form extends React.Component {
         })
     };
 
-    //funkcja sortująca napisy z uwzględnieniem polskich znaków
-    mySort = (alphabet) => {
-        return function(a, b) {
-            let indexA = alphabet.indexOf(a[0]);
-            let indexB = alphabet.indexOf(b[0]);
-
-            if (indexA === indexB) {
-                if (a < b) {
-                    return -1;
-                } else if (a > b) {
-                    return 1;
-                }
-                return 0;
-            } else {
-                return indexA - indexB;
-            }
-        }
-    };
-
 
     render(){
         //przygotowanie danych do select (filtruję tylko góry, które nie zostały zdobyte)
         let mountainsToGain = [];
-        const alphabet = 'AaĄąBbCcĆćDdEeFfGgHhIiJjKkLlŁłMmNnŃńOoÓóPpRrSsŚśTtUuWwYyZzŹźŻż';
 
         //tworzę tablicę z nazwami gór, które zostaną posortowane alfabetycznie
         let mountArray = this.props.mountains.filter((mount) => {
             return this.props.gainedMountains.indexOf(mount.name) === -1
         }).map(mount => mount.name);
 
-        mountArray.sort(this.mySort(alphabet));
+        mountArray.sort(polishAlphabetSort);
 
         //z posortowanej tablicy tworzę obiekty wykorzystywane przez select
         mountArray.forEach(mount => {
             mountainsToGain.push({value: mount, label: mount})
         });
-
-
-
 
         return(
             <div className='form'>

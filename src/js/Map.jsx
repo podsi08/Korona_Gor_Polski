@@ -3,14 +3,6 @@ import GoogleMapReact from 'google-map-react';
 import MountIcon from './MountIcon';
 
 class Map extends Component {
-    constructor(props) {
-        super(props);
-
-        this.state = {
-            activeMountainId: -1
-        };
-    }
-
     static defaultProps = {
         mapConfig: {
             center: {lat: 50.00, lng: 19.50},
@@ -20,9 +12,6 @@ class Map extends Component {
 
     //po kliknięciu w ikonę zmienia się id aktywnej góry porównywane w props MountIcon active
     handleMountainClick = (id) => {
-        this.setState({
-            activeMountainId: id
-        });
         if (typeof this.props.selectedMountainCallback === 'function') {
             this.props.selectedMountainCallback(id);
         }
@@ -36,7 +25,7 @@ class Map extends Component {
             name={mountain.name}
             lat={mountain.latitude}
             lng={mountain.longitude}
-            active={this.state.activeMountainId === mountain.id}
+            active={this.props.selectedMountain !== null && this.props.selectedMountain.id === mountain.id}
             onMountainClicked={this.handleMountainClick}/>)
     };
 
