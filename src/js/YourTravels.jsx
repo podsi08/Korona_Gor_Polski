@@ -35,7 +35,7 @@ class YourTravels extends React.Component {
 
     componentDidMount(){
         //pobieram dane z serwera
-        fetch('http://localhost:3001/mountains').then(response => {
+        fetch('http://138.68.87.152:3001/mountains').then(response => {
             console.log(response);
             return response.json()
         }).then(data => {
