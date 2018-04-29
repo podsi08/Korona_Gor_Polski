@@ -1,10 +1,11 @@
 form {
-	input, .select {
-		height: 1.8rem;
+	.Select, input {
 		width: 55%;
 		margin-bottom: 0.5rem;
-		line-height: 1.8rem;
 		font-size: 0.8rem;
+	}
+	input {
+		line-height: 1.8rem;
 		&:focus{
 			outline: 0;
 		}
@@ -18,7 +19,7 @@ form {
 		background-color: $menuColor;
 		color: darken($backgroundColor, 30%);
 		font-size: 0.9rem;
-		width: 40%;
+		width: 55%;
 		padding: 0;
 		cursor: pointer;
 		border-radius: 6px;
@@ -60,11 +61,14 @@ form {
 			font-size: 1rem;
 			line-height: 2rem;
 		}
-		input, .select {
-			width: 80%;
+		input, .Select {
+			width: 15rem;
 		}
 		input[type='submit'] {
-			width: 55%;
+			width: 15rem;
+		}
+		textarea {
+			width: 20rem;
 		}
 	}
 
@@ -76,11 +80,14 @@ form {
 			font-size: 1.1rem;
 			line-height: 2.2rem;
 		}
-		input, .select {
-			width: 80%;
+		input, .Select {
+			width: 18rem;
 		}
 		input[type='submit'] {
-			width: 55%;
+			width: 18rem;
+		}
+		textarea {
+			width: 25rem;
 		}
 	}
 }

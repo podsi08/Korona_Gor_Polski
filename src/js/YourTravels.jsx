@@ -4,6 +4,7 @@ import TravelMap from './TravelMap';
 import TravelDescription from './TravelDescription';
 import Travel from './model/Travel';
 import Mountain from './model/Mountain';
+import {apiHostname, port} from './api-config';
 
 class YourTravels extends React.Component {
     constructor(props){
@@ -35,7 +36,7 @@ class YourTravels extends React.Component {
 
     componentDidMount(){
         //pobieram dane z serwera
-        fetch('http://138.68.87.152:3001/mountains').then(response => {
+        fetch(`http://${apiHostname}:${port}/mountains`).then(response => {
             console.log(response);
             return response.json()
         }).then(data => {

@@ -3,6 +3,7 @@ import Map from './Map.jsx';
 import MountDescription from './MountDescription';
 import Mountain from './model/Mountain.js';
 import SearchMount from './SearchMount';
+import {apiHostname, port} from './api-config';
 
 class MapContainer extends React.Component {
     constructor(props){
@@ -17,7 +18,7 @@ class MapContainer extends React.Component {
 
     componentDidMount(){
         //pobieram dane z serwera
-        fetch('http://138.68.87.152:3001/mountains').then(response => {
+        fetch(`http://${apiHostname}:${port}/mountains`).then(response => {
             console.log(response);
             return response.json()
         }).then(data => {

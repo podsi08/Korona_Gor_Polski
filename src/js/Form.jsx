@@ -113,7 +113,6 @@ class Form extends React.Component {
                             value={this.state.selectedName}
                             options={mountainsToGain}
                             onChange={this.handleSelectChange}
-                            className='select'
                             />
 
                     <h3>Data zdobycia:</h3>

@@ -111,9 +111,10 @@ header {
   width: 32px;
   height: 32px; }
 
-.search {
-  width: 60%;
-  margin-bottom: 2rem; }
+.Select {
+  width: 12rem;
+  margin-bottom: 2rem;
+  font-size: 0.8rem; }
 
 .map_container {
   display: flex;
@@ -152,13 +153,13 @@ header {
     margin-bottom: 15px;
     overflow-y: auto; }
     .map_container .description h1 {
-      font-size: 1.2rem;
+      font-size: 1.3rem;
       margin-bottom: 0.3rem; }
     .map_container .description h3 {
       margin-bottom: 0.4rem;
-      font-size: 0.8rem; }
+      font-size: 0.85rem; }
     .map_container .description span, .map_container .description .note {
-      font-size: 0.9rem;
+      font-size: 0.95rem;
       font-family: "Indie Flower", cursive; }
     .map_container .description .note_btn {
       font-size: 0.8rem;
@@ -186,6 +187,9 @@ header {
     width: 7rem; } }
 
 @media only screen and (min-width: 800px) and (max-width: 1200px) {
+  .Select {
+    width: 15rem;
+    font-size: 0.9rem; }
   .search {
     width: 40%; }
   .map_container {
@@ -199,8 +203,9 @@ header {
       width: 50%; } }
 
 @media only screen and (min-width: 1201px) {
-  .search {
-    width: 30%; }
+  .Select {
+    width: 18rem;
+    font-size: 0.95rem; }
   .map_container {
     justify-content: left;
     align-items: left;
@@ -249,13 +254,14 @@ p {
   p {
     font-size: 1rem; } }
 
-form input, form .select {
-  height: 1.8rem;
+form .Select, form input {
   width: 55%;
   margin-bottom: 0.5rem;
-  line-height: 1.8rem;
   font-size: 0.8rem; }
-  form input:focus, form .select:focus {
+
+form input {
+  line-height: 1.8rem; }
+  form input:focus {
     outline: 0; }
 
 form input {
@@ -267,7 +273,7 @@ form input[type='submit'] {
   background-color: #e3e6ec;
   color: #0f498c;
   font-size: 0.9rem;
-  width: 40%;
+  width: 55%;
   padding: 0;
   cursor: pointer;
   border-radius: 6px;
@@ -303,19 +309,23 @@ form h3 {
   form h3 {
     font-size: 1rem;
     line-height: 2rem; }
-  form input, form .select {
-    width: 80%; }
+  form input, form .Select {
+    width: 15rem; }
   form input[type='submit'] {
-    width: 55%; } }
+    width: 15rem; }
+  form textarea {
+    width: 20rem; } }
 
 @media only screen and (min-width: 1201px) {
   form h3 {
     font-size: 1.1rem;
     line-height: 2.2rem; }
-  form input, form .select {
-    width: 80%; }
+  form input, form .Select {
+    width: 18rem; }
   form input[type='submit'] {
-    width: 55%; } }
+    width: 18rem; }
+  form textarea {
+    width: 25rem; } }
 
 * {
   margin: 0;
@@ -332,7 +342,7 @@ form h3 {
       * body .container h1 {
         font-family: "Indie Flower", cursive;
         margin-bottom: 10px;
-        font-size: 1.2rem; }
+        font-size: 1.3rem; }
 
 @media only screen and (min-width: 481px) and (max-width: 1200px) {
   body .container h1 {

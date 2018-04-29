@@ -40,7 +40,6 @@ class SearchMount extends React.Component {
                     value={this.state.selectedMount}
                     options={mountains}
                     onChange={this.handleSelectChange}
-                    className='search'
             />
         )
     }
