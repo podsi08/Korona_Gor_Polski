@@ -75,7 +75,9 @@ class MapContainer extends React.Component {
                              selectedMountainCallback={this.selectMountain}
                              selectedMountain={this.state.selectedMountain}
                         />
-                        <MountDescription mountain={this.state.selectedMountain} prompt="Wybierz górę"/>
+                        <MountDescription mountain={this.state.selectedMountain}
+                                          prompt="Wybierz górę"
+                                          info="Wybierz ikonę na mapie lub wyszukaj górę"/>
                     </div>
                 </div>
             </div>

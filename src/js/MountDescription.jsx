@@ -60,8 +60,9 @@ class MountDescription extends React.Component {
         } else {
             //wykona się jeżeli nie wybrano góry
             return(
-                <div className='description'>
+                <div className='info'>
                     <h1>{this.props.prompt}</h1>
+                    <span>{this.props.info}</span>
                 </div>
             )
         }

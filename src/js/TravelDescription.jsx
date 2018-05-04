@@ -68,7 +68,7 @@ class TravelDescription extends React.Component {
                            onChange={this.handleInput}/>
 
         } else {
-            return <span ref={this.dateRef}>{this.props.travel.date}</span>
+            return <span ref={this.dateRef} className='date'>{this.props.travel.date}</span>
         }
     };
 
@@ -76,7 +76,7 @@ class TravelDescription extends React.Component {
     //motywującą wiadomość
 
     renderNote = () => {
-        //jeżeli góra jest nizdobyta w propsie przekazany zostaie 'undefined'
+        //jeżeli góra jest niezdobyta w propsie przekazany zostaie 'undefined'
         if (typeof this.props.travel !== 'undefined') {
             return(
                 <React.Fragment>
@@ -107,8 +107,9 @@ class TravelDescription extends React.Component {
             )
         } else {
             return(
-                <div className='description'>
+                <div className='info'>
                     <h1>{this.props.prompt}</h1>
+                    <span>{this.props.info}</span>
                 </div>
             )
         }

@@ -152,6 +152,7 @@ class YourTravels extends React.Component {
                     <TravelDescription mountain={this.state.selectedMountain}
                                        travel={travel}
                                        prompt="Wybierz górę"
+                                       info="Wybierz ikonę na mapie lub wyszukaj górę"
                                        motivationMessage="Góra jeszcze niezdobyta... Przestań patrzeć w ten monitor i zrób coś z tym"
                                        deleteNoteClick={this.deleteNote}
                                        editNoteClick={this.editNote}/>

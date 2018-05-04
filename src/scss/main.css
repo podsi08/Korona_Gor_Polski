@@ -142,6 +142,9 @@ header {
       visibility: hidden; }
     .map_container .map .tooltip_visible {
       display: none; }
+  .map_container .info {
+    width: 100%;
+    margin-bottom: 15px; }
   .map_container .description {
     width: 100%;
     height: 40vh;
@@ -158,9 +161,11 @@ header {
     .map_container .description h3 {
       margin-bottom: 0.4rem;
       font-size: 0.85rem; }
-    .map_container .description span, .map_container .description .note {
-      font-size: 0.95rem;
+    .map_container .description .note, .map_container .description span {
+      font-size: 1rem;
       font-family: "Indie Flower", cursive; }
+    .map_container .description .date {
+      font-size: 1.1rem; }
     .map_container .description .note_btn {
       font-size: 0.8rem;
       height: 1.2rem;
@@ -186,8 +191,10 @@ header {
     font-size: 1.5rem; }
   .map_container .description h3 {
     font-size: 0.9rem; }
-  .map_container .description span, .map_container .description .note {
+  .map_container .description .note, .map_container .description span {
     font-size: 1.1rem; }
+  .map_container .description .date {
+    font-size: 1.2rem; }
   .map_container .description .note_btn {
     font-size: 0.9rem;
     height: 1.3rem;
@@ -203,6 +210,8 @@ header {
     justify-content: space-between; }
     .map_container .map {
       width: 60%; }
+    .map_container .info {
+      width: 38%; }
     .map_container .description {
       width: 38%;
       height: 50vh; }
@@ -235,6 +244,9 @@ header {
         text-align: center;
         z-index: 10;
         opacity: 0.85; }
+    .map_container .info {
+      width: 30%;
+      margin-left: 5%; }
     .map_container .description {
       width: 30%;
       height: 50vh;
@@ -243,8 +255,10 @@ header {
         font-size: 1.8rem; }
       .map_container .description h3 {
         font-size: 1.1rem; }
-      .map_container .description span, .map_container .description .note {
-        font-size: 1.1rem; }
+      .map_container .description .note, .map_container .description span {
+        font-size: 1.2rem; }
+      .map_container .description .date {
+        font-size: 1.3rem; }
       .map_container .description .note_btn {
         font-size: 1rem;
         height: 1.4rem;
