@@ -7,14 +7,24 @@ class TravelDescription extends React.Component {
         //tworzę referencje, które zostaną wykorzystane przy edycji notatek z podróży (przekazuję this.noteRef.current.innerText
         //jako parametr do funkcji będącej callbackiem kliknięcia w przycisk "zapisz", wartość ta jest w funkcji editNote w
         // YourTravel zapisywana do local storage
-        this.dateRef = React.createRef();
+
         this.noteRef = React.createRef();
 
         this.state = {
             contenteditable: false,
-            buttonText: 'Edytuj notatkę'
-        }
+            buttonText: 'Edytuj notatkę',
+            date: ''
+        };
     }
+
+    //TODO: po odświeżeniu strony lub zmianie zdobytej góry, przy wybraniu edycji w input data brakuje starej daty
+    // componentDidUpdate() {
+    //     if(this.state.date !== this.props.travel.date) {
+    //         this.setState({
+    //             date: this.props.travel.date
+    //         })
+    //     }
+    // }
 
     handleClickDelete = () => {
         if(typeof this.props.deleteNoteClick === 'function') {
@@ -30,9 +40,11 @@ class TravelDescription extends React.Component {
             })
 
         } else {
+            //jeżeli została wybrana nowa data, przekazuję ją jako parametr, jeżeli nie, parametrem będzie stara data (nie '')
+            let dateParametr = this.state.date !== '' ? this.state.date : this.props.travel.date;
 
             if(typeof this.props.editNoteClick === 'function') {
-                this.props.editNoteClick(this.props.mountain.name, this.dateRef.current.innerText, this.noteRef.current.innerText);
+                this.props.editNoteClick(this.props.mountain.name, dateParametr, this.noteRef.current.innerText);
             }
 
             this.setState({
@@ -42,6 +54,23 @@ class TravelDescription extends React.Component {
         }
     };
 
+    handleInput = (e) => {
+        this.setState({
+            date: e.target.value
+        })
+    };
+
+    //jeżeli wybrano edycję pojawia się input(date) do wybrania daty, jeżeli nie, wyświetla się data
+    renderDate = () => {
+        if(this.state.contenteditable) {
+            return <input type='date'
+                           value={this.state.date}
+                           onChange={this.handleInput}/>
+
+        } else {
+            return <span ref={this.dateRef}>{this.props.travel.date}</span>
+        }
+    };
 
     //jeżeli istnieje notatka o zdobyciu wybranej góry to ją wyświetl, jeżeli nie, wyświetl
     //motywującą wiadomość
@@ -51,7 +80,7 @@ class TravelDescription extends React.Component {
         if (typeof this.props.travel !== 'undefined') {
             return(
                 <React.Fragment>
-                    <h3>Data zdobycia: <span ref={this.dateRef} contentEditable={this.state.contenteditable}>{this.props.travel.date}</span></h3>
+                    <h3>Data zdobycia: {this.renderDate()}</h3>
                     <div ref={this.noteRef} contentEditable={this.state.contenteditable} className='note'>{this.props.travel.note}</div>
                     <div>
                         <div onClick={this.handleClickEdit} className='note_btn'>{this.state.buttonText}</div>
