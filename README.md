@@ -3,6 +3,7 @@ Korona Gór Polski is an application in which you can search an information abou
 
 In this project I used React and Sass.
 
+You can watch my project here: http://138.68.87.152
 
 ## Funcionality
 - searching of information about mountains,
