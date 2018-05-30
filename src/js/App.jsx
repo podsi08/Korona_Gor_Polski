@@ -13,6 +13,7 @@ import MapContainer from "./MapContainer";
 import Home from "./Home";
 import Menu from "./Menu";
 import YourTravels from "./YourTravels";
+import PlanTravel from "./PlanTravel";
 
 class App extends React.Component {
     render(){
@@ -24,6 +25,7 @@ class App extends React.Component {
                         <Route exact path="/" component={Home}/>
                         <Route path="/map" component={MapContainer}/>
                         <Route path="/yourtravels" component={YourTravels}/>
+                        <Route path="/plantravel" component={PlanTravel}/>
                     </Switch>
                 </div>
             </HashRouter>

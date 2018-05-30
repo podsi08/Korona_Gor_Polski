@@ -17,6 +17,9 @@ class Menu extends React.Component {
                             <li>
                                 <MenuItem path='/yourtravels' menuName='Twoje podróże'/>
                             </li>
+                            <li>
+                                <MenuItem path='/plantravel' menuName='Zaplanuj podróż'/>
+                            </li>
                         </ul>
                     </nav>
                 </div>
