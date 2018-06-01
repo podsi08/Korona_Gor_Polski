@@ -10,7 +10,7 @@ class MountForecast extends React.Component {
                     <h3>{this.props.mountain.height} m n.p.m.</h3>
                     <div>
                         <h3>Prognoza pogody</h3>
-                        <span>{this.props.forecast[0]}</span>
+                        <span>{this.props.forecast}</span>
                     </div>
                 </div>
             )

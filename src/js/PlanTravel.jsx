@@ -3,6 +3,7 @@ import Map from "./Map";
 import Mountain from "./model/Mountain";
 import {apiHostname, port} from "./api-config";
 import MountForecast from "./MountForecast";
+import HourForecast from "./HourForecast";
 
 class PlanTravel extends React.Component {
     constructor(props){
@@ -49,12 +50,12 @@ class PlanTravel extends React.Component {
             });
         }
 
-        fetch("https://api.openweathermap.org/data/2.5/forecast?id=7532480&APPID=51c81a8177719cb6bf599f038121f5a3").then(response => {
+        fetch(`https://api.openweathermap.org/data/2.5/forecast?lat=${clickedMountain.latitude}&lon=${clickedMountain.longitude}&APPID=51c81a8177719cb6bf599f038121f5a3`).then(response => {
             return response.json()
         }).then(data => {
-            console.log(data.list[0]);
+            console.log(data.list);
             this.setState({
-                forecast: [...data.list]
+                forecast: data.list
             })
         }).catch(err => {
             console.log(err)
@@ -70,7 +71,8 @@ class PlanTravel extends React.Component {
                          selectedMountainCallback={this.selectMountain}
                          selectedMountain={this.state.selectedMountain}
                     />
-                    <MountForecast mountain={this.state.selectedMountain} forecast={this.state.forecast}/>
+                    <MountForecast mountain={this.state.selectedMountain}/>
+                    <HourForecast forecast={this.state.forecast}/>
                 </div>
             </div>
         )
