@@ -72,7 +72,8 @@ class PlanTravel extends React.Component {
                          selectedMountain={this.state.selectedMountain}
                     />
                     <MountForecast mountain={this.state.selectedMountain}/>
-                    <HourForecast forecast={this.state.forecast}/>
+                    <HourForecast forecast={this.state.forecast} id='0'/>
+                    <HourForecast forecast={this.state.forecast} id='3'/>
                 </div>
             </div>
         )
