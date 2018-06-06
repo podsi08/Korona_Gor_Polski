@@ -351,6 +351,11 @@ form h3 {
   form textarea {
     width: 25rem; } }
 
+.map_container .mount_forecast {
+  width: 100%; }
+  .map_container .mount_forecast .hour_forecast {
+    display: inline-block; }
+
 * {
   margin: 0;
   padding: 0;

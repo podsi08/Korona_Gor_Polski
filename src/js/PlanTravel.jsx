@@ -3,7 +3,6 @@ import Map from "./Map";
 import Mountain from "./model/Mountain";
 import {apiHostname, port} from "./api-config";
 import MountForecast from "./MountForecast";
-import HourForecast from "./HourForecast";
 
 class PlanTravel extends React.Component {
     constructor(props){
@@ -71,9 +70,7 @@ class PlanTravel extends React.Component {
                          selectedMountainCallback={this.selectMountain}
                          selectedMountain={this.state.selectedMountain}
                     />
-                    <MountForecast mountain={this.state.selectedMountain}/>
-                    <HourForecast forecast={this.state.forecast} id='0'/>
-                    <HourForecast forecast={this.state.forecast} id='3'/>
+                    <MountForecast mountain={this.state.selectedMountain} forecast={this.state.forecast}/>
                 </div>
             </div>
         )
