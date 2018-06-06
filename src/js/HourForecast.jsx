@@ -2,27 +2,27 @@ import React from 'react';
 import arrow from '../images/long-arrow-pointing-up.png'
 
 class HourForecast extends React.Component {
-    //funkcja zwracająca dzień tygodnia
-    // getDay = (date) => {
-    //     let day = date.getDay();
-    //
-    //     switch (day) {
-    //         case 0:
-    //             return 'nd';
-    //         case 1:
-    //             return 'pon';
-    //         case 2:
-    //             return 'wt';
-    //         case 3:
-    //             return 'śr';
-    //         case 4:
-    //             return 'czw';
-    //         case 5:
-    //             return 'pt';
-    //         case 6:
-    //             return 'sob';
-    //     }
-    // };
+    // funkcja zwracająca dzień tygodnia
+    getDay = (date) => {
+        let day = new Date(parseInt(date)).getDay();
+
+        switch (day) {
+            case 0:
+                return 'nd';
+            case 1:
+                return 'pon';
+            case 2:
+                return 'wt';
+            case 3:
+                return 'śr';
+            case 4:
+                return 'czw';
+            case 5:
+                return 'pt';
+            case 6:
+                return 'sob';
+        }
+    };
 
     render(){
         let forecast = this.props.forecast;
@@ -44,9 +44,9 @@ class HourForecast extends React.Component {
                     {/*zachmurzenie*/}
                     <div>{forecast[id].clouds.all} %</div>
                     {/*dzień tygodnia*/}
-                    {/*<div>{this.getDay(forecast[id].dt)}</div>*/}
+                    <div>{this.getDay(forecast[id].dt)}</div>
                     {/*godzina*/}
-                    {/*<div>{forecast[id].dt.getHours()}</div>*/}
+                    <div>{new Date(parseInt(forecast[id].dt)).getHours()}</div>
                 </div>
             )
         }else {
