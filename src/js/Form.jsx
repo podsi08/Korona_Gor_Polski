@@ -33,6 +33,11 @@ class Form extends React.Component {
             messages.push(<h3 className='error_message'>Musisz wybrać datę</h3>)
         }
 
+        if(Date.parse(this.state.date) > Date.now()){
+            error = true;
+            messages.push(<h3 className='error_message'>Data nie może być z przyszłości</h3> )
+        }
+
         //jeżeli nie ma błędu, tworzony jest nowy obiekt newTravel wg modelu w ./model/Travel.js
         if (!error){
             let newTravel = new Travel (

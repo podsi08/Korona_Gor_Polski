@@ -55,9 +55,13 @@ class TravelDescription extends React.Component {
     };
 
     handleInput = (e) => {
-        this.setState({
-            date: e.target.value
-        })
+        e.preventDefault();
+
+        if(Date.parse(e.target.value) < Date.now()){
+            this.setState({
+                date: e.target.value
+            })
+        }
     };
 
     //jeżeli wybrano edycję pojawia się input(date) do wybrania daty, jeżeli nie, wyświetla się data
