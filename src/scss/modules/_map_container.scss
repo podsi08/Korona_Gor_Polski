@@ -20,6 +20,7 @@
 	margin-bottom: 70px;
 	.map {
 		height: 50vh;
+		min-height: 270px;
 		width: 100%;
 		margin-bottom: 15px;
 		.mount_icon_inactive {
@@ -55,6 +56,9 @@
 	.info {
 		width: 100%;
 		margin-bottom: 15px;
+		p {
+			text-indent: 0;
+		}
 	}
 	.description {
 		width: 100%;

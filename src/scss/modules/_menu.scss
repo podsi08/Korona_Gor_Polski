@@ -3,11 +3,13 @@ header {
 	background-position: center left;
 	background-size: cover;
 	width: 100vw;
+	min-width: 300px;
 	height: 25vh;
+	min-height: 200px;
 	margin-bottom: 20px;
 	ul{
 		display: flex;
-		flex-direction: column;
+		flex-direction: row;
 		flex-wrap: wrap;
 		list-style: none;
 		height: 100%;

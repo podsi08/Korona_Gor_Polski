@@ -1,9 +1,28 @@
 .map_container {
-	.mount_forecast {
+	.plan_travel_info {
+		width: 200px;
+	}
+	.mount_forecast_container {
 		width: 100%;
-		.hour_forecast {
-			display: inline-block;
+		h1 {
+			margin-bottom: 0;
 		}
+		.mount_forecast {
+			width: 100%;
+			white-space: nowrap;
+			height: 250px;
+			overflow: auto;
+			.hour_forecast {
+				display: inline-block;
+				width: 100px;
+				text-align: center;
+				height: 230px;
+				div {
+					margin-top: 5px;
+				}
+			}
+		}
+
 	}
 
 }

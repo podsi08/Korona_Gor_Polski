@@ -1,10 +1,12 @@
 import React from 'react';
 import arrow from '../images/long-arrow-pointing-up.png';
 import cloud from '../images/cloud.png';
+import raindrops from '../images/raindrops.png';
 
 class HourForecast extends React.Component {
     // funkcja zwracająca dzień tygodnia, w odpowiedzi api dostaję sekundy a nie milisekundy dlatego mnożę przez 1000
     getDay = (date) => {
+        //zamieniam otrzymany w odpowiedzi string na liczbę, z której tworzona jest data - z daty wyciągam dzień
         let day = new Date(parseInt(date) * 1000).getDay();
 
         switch (day) {
@@ -46,16 +48,16 @@ class HourForecast extends React.Component {
 
             return(
                 <div className='hour_forecast'>
-                    {/*ikona*/}
+                    {/*ikona - korzystam z ikon udostępnianych przez open weather map http://openweathermap.org/img/w/nazwa_ikony.png*/}
                     <img src={`http://openweathermap.org/img/w/${forecast[id].weather[0].icon}.png`}/>
 
-                    {/*temperatura*/}
+                    {/*temperatura - w odpowiedzi dostaję temperaturę w kelvinach - przeliczenie na stopnie Celcjusza*/}
                     <div>{Math.round(forecast[id].main.temp - 273.15)} &#8451;</div>
 
                     {/*wiatr*/}
                     <div>
                         <span>{forecast[id].wind.speed} m/s </span>
-                        {/*strzałka oznaczająca kierunek wiatru będzie obrócona o wartość deg otrzymaną w odpowiedzi api dla wiatru*/}
+                        {/*strzałka oznaczająca kierunek wiatru (domyślnie wskazująca północ) będzie obrócona o wartość deg otrzymaną w odpowiedzi z api dla wiatru*/}
                         <img src={arrow} style={{transform: `rotate(${forecast[id].wind.deg}deg)`}}/>
                     </div>
 
@@ -67,13 +69,14 @@ class HourForecast extends React.Component {
 
                     {/*deszcz*/}
                     <div>
-                        <span>{rainVolume} mm</span>
+                        <span>{rainVolume.toFixed(2)} mm </span>
+                        <img src={raindrops}/>
                     </div>
 
                     {/*dzień tygodnia*/}
                     <div>{this.getDay(forecast[id].dt)}</div>
 
-                    {/*godzina*/}
+                    {/*godzina - zamieniam otrzymany w odpowiedzi string na liczbę, zamieniam na ms i potem na datę z której wyciągam godzinę*/}
                     <div>{new Date(parseInt(forecast[id].dt) * 1000).getHours()}:00</div>
                 </div>
             )
