@@ -9,8 +9,9 @@ You can watch my project here: http://138.68.87.152
 - searching of information about mountains,
 - adding your travel memories,
 - editing and deleting of your notes
+- planning your next expedition: check the weather forecast
 
 **Funcionalities which I plan to add**
 - add your photos from the trip,
-- plan your next expedition: check weather and search for trails
+- search for trails
 
