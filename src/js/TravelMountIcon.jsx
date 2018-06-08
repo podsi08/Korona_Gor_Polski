@@ -1,6 +1,15 @@
 import React from "react";
 
 class TravelMountIcon extends React.Component {
+    constructor(props){
+        super(props);
+
+        this.state = {
+            class: 'tooltip_hidden',
+            name: ''
+        }
+    }
+
     handleClick = () => {
         if(typeof this.props.onMountainClicked === 'function'){
             this.props.onMountainClicked(this.props.name);
@@ -19,10 +28,28 @@ class TravelMountIcon extends React.Component {
         }
     };
 
+    handleMouseOver = (e, name) => {
+        this.setState({
+            class: 'tooltip_visible',
+            name: name
+        })
+    };
+
+    handleMouseLeave = () => {
+        this.setState({
+            class: 'tooltip_hidden'
+        })
+    };
+
     render(){
         return(
-            <div onClick={this.handleClick}
-                 className={this.classSelect()}/>
+            <React.Fragment>
+                <div onClick={this.handleClick}
+                     onMouseOver={e => this.handleMouseOver(e, this.props.name)}
+                     onMouseLeave={this.handleMouseLeave}
+                     className={this.classSelect()}/>
+                <div className={this.state.class}>{this.state.name}</div>
+            </React.Fragment>
         )
     }
 }
